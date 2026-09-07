@@ -1,49 +1,64 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Тестовый класс для проверки корректности работы программы A+B.
- * Обеспечивает покрытие кода тестами для плагина Jacoco.
- */
 class MainTest {
-
-    /**
-     * Тест симулирует ввод чисел 5 и 10 в консоль и проверяет,
-     * что программа Main успешно выполняется без сбоев.
-     */
+    //Проверка пустого массива
     @Test
-    void checkMainExecutionWithInput() {
-        // 1. Симулируем ввод пользователя: пишем числа "5 10" как поток данных
-        String simulatedInput = "5 10\n";
-        InputStream originalSystemIn = System.in;
-        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedInput.getBytes());
-
-        try {
-            // Подменяем стандартный ввод на наш заготовленный текстовый поток
-            System.setIn(testInput);
-
-            // 2. Вызываем главный метод нашей программы
-            Main.main(new String[]{});
-
-            // 3. Если программа не вылетела с ошибкой, тест считается успешно пройденным
-            assertTrue(true);
-
-        } finally {
-            // Возвращаем стандартный ввод системы в исходное состояние
-            System.setIn(originalSystemIn);
-        }
+    void testEmptyArray() {
+        int[] input = new int[0];
+        int[] expected = new int[0];
+        assertArrayEquals(expected, Main.heapsort(input));
+    }
+    //Проверка массива из одного элемента
+    @Test
+    void testSingleElement() {
+        int[] input = {42};
+        int[] expected = {42};
+        assertArrayEquals(expected, Main.heapsort(input));
+    }
+    //Проверка уже отсортированного массива
+    @Test
+    void testAlreadySorted() {
+        int[] input = {1, 2, 3, 4, 5};
+        int[] expected = {1, 2, 3, 4, 5};
+        assertArrayEquals(expected, Main.heapsort(input));
     }
 
-    /**
-     * Тест проверяет создание объекта дефолтного конструктора.
-     * Необходим для достижения 100% покрытия методов по требованию Jacoco.
-     */
+    //Проверка массива обратно упорядоченного
     @Test
-    void checkConstructorCoverage() {
+    void testReverseSorted() {
+        int[] input = {5, 4, 3, 2, 1};
+        int[] expected = {1, 2, 3, 4, 5};
+        assertArrayEquals(expected, Main.heapsort(input));
+    }
+    //Проверка массива с хаотическим порядком, дупликатами и числами с разными знаками
+    @Test
+    void testSmallTest() {
+        int[] input = {-1, 3, -1, 5, 3, 0, -5, 2};
+        int[] expected = {-5, -1, -1, 0, 2, 3, 3, 5};
+        assertArrayEquals(expected, Main.heapsort(input));
+    }
+    //Проверка на случайном, но огромном массиве, в частности для проверки асимптотики
+    @Test
+    void testLargeRandomArray() {
+        int size = 1000000;
+        int[] input = new int[size];
+        int[] expected = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            int value = random.nextInt();
+            input[i] = value;
+            expected[i] = value;
+        }
+        java.util.Arrays.sort(expected);
+        assertArrayEquals(expected, Main.heapsort(input));
+    }
+    //Тест для покрытия дефолтного конструктора
+    @Test
+    void testMainConstructor() {
         Main mainInstance = new Main();
         assertNotNull(mainInstance);
     }
