@@ -8,34 +8,6 @@ import java.util.Scanner;
  */
 public class Main {
     /**
-     * Дефолтный конструктор класса Main.
-     */
-    public Main() {
-    }
-
-    /**
-     * Метод принимает неотсортированный массив чисел типа int
-     * и возвращает новый, отсортированный по возрастанию.
-     * Реализует алгоритм Heapsort с временной сложностью O(N log N).
-     *
-     * @param givenArray исходный массив целых чисел
-     *
-     * @return новый массив, элементы которого отсортированы по возрастанию
-     */
-    public static int [] heapsort(int [] givenArray) {
-        int sizeArray = givenArray.length;
-        Heap heapToSort = new Heap(sizeArray);
-        int [] sortedArray = new int [sizeArray];
-        for (int element : givenArray) {
-            heapToSort.addNewElement(element);
-        }
-        for (int i = 0; i < sizeArray; i++) {
-            sortedArray[i] = heapToSort.extractMinElement();
-        }
-        return sortedArray;
-    }
-
-    /**
      * Точка входа в программу. Считывает размер массива и её элементы из консоли,
      * запускает сортировку и выводит результат.
      *
@@ -48,7 +20,7 @@ public class Main {
         for (int i = 0; i < sizeArray; i++) {
             array[i] = scanner.nextInt();
         }
-        int [] sortedArray = heapsort(array);
+        int [] sortedArray = Heap.heapsort(array);
         for (int i = 0; i < sizeArray; i++) {
             System.out.print(sortedArray[i] + " ");
         }
