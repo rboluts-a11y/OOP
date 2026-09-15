@@ -49,6 +49,6 @@ public class Deck {
         if (cards.isEmpty()) {
             throw new IllegalStateException("В колоде закончились карты!");
         }
-        return cards.removeLast();
+        return cards.remove(cards.size() - 1);
     }
 }

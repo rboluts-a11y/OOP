@@ -99,7 +99,7 @@ class HandTest {
 
         // Проверяем, что строка соответствует хотя бы одному из логически верных вариантов
         assertTrue(result.equals(optionA) || result.equals(optionB),
-                "Строка форматирования Тузов не соответствует ни одному эталону. Получено: " + result);
+                "Строка форматирования не соответствует ни одному эталону. Получено: " + result);
 
         Hand oneCardHand = new Hand();
         oneCardHand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
@@ -109,7 +109,8 @@ class HandTest {
         notBustedHand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
         notBustedHand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
         notBustedHand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
-        assertEquals("[Дама Бубны (10), Десятка Трефы (10), Туз Червы (1)] => 21", notBustedHand.toStringFormatted(false));
+        assertEquals("[Дама Бубны (10), Десятка Трефы (10), Туз Червы (1)] => 21",
+                notBustedHand.toStringFormatted(false));
     }
 
     @Test

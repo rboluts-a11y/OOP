@@ -14,11 +14,14 @@ public class Main {
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
+        System.setOut(new java.io.PrintStream(System.out,
+                true, java.nio.charset.StandardCharsets.UTF_8));
         Scanner scanner = new Scanner(System.in, java.nio.charset.StandardCharsets.UTF_8);
 
         Deck deck = new Deck();
-        int playerWins = 0, dealerWins = 0, roundNumber = 0;
+        int playerWins = 0;
+        int dealerWins = 0;
+        int roundNumber = 0;
         System.out.println("Добро пожаловать в Блэкджек!");
 
         int isPlayerWantToPlay = 1;
