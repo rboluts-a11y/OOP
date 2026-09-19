@@ -12,13 +12,13 @@ class HandTest {
     void testScoreAndBustedRegularCards() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.QUEEN));
-        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
+        hand.addCard(new Card(Suit.SPADES, Rank.QUEEN));
+        hand.addCard(new Card(Suit.HEARTS, Rank.SEVEN));
 
         assertEquals(17, hand.getScore());
         assertFalse(hand.isBusted());
 
-        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.FIVE));
+        hand.addCard(new Card(Suit.CLUBS, Rank.FIVE));
         assertEquals(22, hand.getScore());
         assertTrue(hand.isBusted());
     }
@@ -27,13 +27,13 @@ class HandTest {
     void testScoreWithAces() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
         assertEquals(11, hand.getScore());
 
-        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
+        hand.addCard(new Card(Suit.SPADES, Rank.ACE));
         assertEquals(12, hand.getScore());
 
-        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
+        hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
         assertEquals(12, hand.getScore());
 
     }
@@ -41,24 +41,24 @@ class HandTest {
     @Test
     void testIsBlackjackScenarios() {
         Hand hand = new Hand();
-        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.TEN));
-        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.SEVEN));
-        hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.FOUR));
+        hand.addCard(new Card(Suit.SPADES, Rank.TEN));
+        hand.addCard(new Card(Suit.HEARTS, Rank.SEVEN));
+        hand.addCard(new Card(Suit.CLUBS, Rank.FOUR));
         assertEquals(21, hand.getScore());
         assertFalse(hand.isBlackjack());
 
         Hand blackjackHand = new Hand();
-        blackjackHand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        blackjackHand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.KING));
+        blackjackHand.addCard(new Card(Suit.SPADES, Rank.ACE));
+        blackjackHand.addCard(new Card(Suit.CLUBS, Rank.KING));
         assertTrue(blackjackHand.isBlackjack());
 
         Hand handWithTwoAces = new Hand();
-        handWithTwoAces.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        handWithTwoAces.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+        handWithTwoAces.addCard(new Card(Suit.SPADES, Rank.ACE));
+        handWithTwoAces.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
         assertFalse(handWithTwoAces.isBlackjack());
 
         Hand handWithOneCard = new Hand();
-        handWithOneCard.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        handWithOneCard.addCard(new Card(Suit.DIAMONDS, Rank.TWO));
         assertFalse(handWithOneCard.isBlackjack());
     }
 
@@ -68,10 +68,10 @@ class HandTest {
 
         assertThrows(IllegalStateException.class, hand::openSecondCard);
 
-        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.TWO));
+        hand.addCard(new Card(Suit.SPADES, Rank.TWO));
         assertThrows(IllegalStateException.class, hand::openSecondCard);
 
-        Card secondCard = new Card(Card.Suit.HEARTS, Card.Rank.KING);
+        Card secondCard = new Card(Suit.HEARTS, Rank.KING);
         hand.addCard(secondCard);
         assertEquals(secondCard, hand.openSecondCard());
 
@@ -85,14 +85,14 @@ class HandTest {
         Hand hand = new Hand();
         assertEquals("[] => 0", hand.toStringFormatted(false));
 
-        hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.QUEEN));
-        hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.THREE));
+        hand.addCard(new Card(Suit.SPADES, Rank.QUEEN));
+        hand.addCard(new Card(Suit.HEARTS, Rank.THREE));
         assertEquals("[Дама Пики (10), Тройка Червы (3)] => 13", hand.toStringFormatted(false));
         assertEquals("[Дама Пики (10), <закрытая карта>]", hand.toStringFormatted(true));
 
         Hand aceHand = new Hand();
-        aceHand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-        aceHand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+        aceHand.addCard(new Card(Suit.SPADES, Rank.ACE));
+        aceHand.addCard(new Card(Suit.CLUBS, Rank.ACE));
         String result = aceHand.toStringFormatted(false);
         String optionA = "[Туз Пики (11), Туз Трефы (1)] => 12";
         String optionB = "[Туз Пики (1), Туз Трефы (11)] => 12";
@@ -102,13 +102,13 @@ class HandTest {
                 "Строка форматирования не соответствует ни одному эталону. Получено: " + result);
 
         Hand oneCardHand = new Hand();
-        oneCardHand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
+        oneCardHand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
         assertEquals("[Валет Бубны (10)] => 10", oneCardHand.toStringFormatted(true));
 
         Hand notBustedHand = new Hand();
-        notBustedHand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-        notBustedHand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
-        notBustedHand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+        notBustedHand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+        notBustedHand.addCard(new Card(Suit.CLUBS, Rank.TEN));
+        notBustedHand.addCard(new Card(Suit.HEARTS, Rank.ACE));
         assertEquals("[Дама Бубны (10), Десятка Трефы (10), Туз Червы (1)] => 21",
                 notBustedHand.toStringFormatted(false));
     }
@@ -116,7 +116,7 @@ class HandTest {
     @Test
     void testDefaultToString() {
         Hand hand = new Hand();
-        hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.SEVEN));
+        hand.addCard(new Card(Suit.DIAMONDS, Rank.SEVEN));
         assertEquals(hand.toStringFormatted(false), hand.toString());
     }
 }

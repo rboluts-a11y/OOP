@@ -18,114 +18,72 @@ public class Main {
                 true, java.nio.charset.StandardCharsets.UTF_8));
         Scanner scanner = new Scanner(System.in, java.nio.charset.StandardCharsets.UTF_8);
 
-        Deck deck = new Deck();
-        int playerWins = 0;
-        int dealerWins = 0;
-        int roundNumber = 0;
+        ScoreState scoreState = new ScoreState();
+        RoundState roundState = new RoundState();
+
         System.out.println("Добро пожаловать в Блэкджек!");
 
         int isPlayerWantToPlay = 1;
         while (isPlayerWantToPlay == 1) {
-            roundNumber++;
-            System.out.println("Раунд " + roundNumber);
+            System.out.println(scoreState.addNewGame());
 
-            deck.reset();
-            deck.shuffle();
+            roundState.newRound();
 
-            Hand playerHand = new Hand();
-            Hand dealerHand = new Hand();
+            System.out.println("Дилер раздал карты!\n" + roundState.getStateInformation());
 
-            playerHand.addCard(deck.takeCard());
-            dealerHand.addCard(deck.takeCard());
-            playerHand.addCard(deck.takeCard());
-            dealerHand.addCard(deck.takeCard());
-
-            System.out.println("Дилер раздал карты");
-            System.out.println("    Ваши карты: " + playerHand.toStringFormatted(false));
-            System.out.println("    Карты дилера: " + dealerHand.toStringFormatted(true) + "\n");
-
-            if (playerHand.isBlackjack()) {
-                System.out.print("У вас Блэкджек со старта! Вы выиграли раунд! ");
-                playerWins++;
-
-                System.out.println(getScoreNotification(playerWins, dealerWins));
-
-                System.out.println("\nВведите “1”, если хотите сыграть ещё, и “0”, чтобы остановиться... ");
-                isPlayerWantToPlay = scanner.nextInt();
-                System.out.println();
-
-                continue;
-            }
-
-            System.out.println("Ваш ход");
-            System.out.println("-------");
-
-            while (!playerHand.isBusted()) {
-                System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться... ");
-                int choice = scanner.nextInt();
-                if (choice == 0) {
-                    break;
-                }
-
-                if (choice == 1) {
-                    Card takenCard = deck.takeCard();
-                    playerHand.addCard(takenCard);
-                    System.out.println("Вы открыли карту " + takenCard.toStringWithPoints(false));
-                    System.out.println("    Ваши карты: " + playerHand.toStringFormatted(false));
-                    System.out.println("    Карты дилера: " + dealerHand.toStringFormatted(true) + "\n");
-                }
-            }
-
-            if (playerHand.isBusted()) {
-                System.out.print("У вас перебор! Вы проиграли раунд. ");
-                dealerWins++;
-
-                System.out.println(getScoreNotification(playerWins, dealerWins));
-
-                System.out.println("\nВведите “1”, если хотите сыграть ещё, и “0”, чтобы остановиться... ");
-                isPlayerWantToPlay = scanner.nextInt();
-                System.out.println();
-
-                continue;
-            }
-
-            System.out.println("\nХод дилера");
-            System.out.println("-------");
-
-            waitSeconds(1.0);
-
-            Card openedCard = dealerHand.openSecondCard();
-            System.out.println("Дилер открывает закрытую карту " + openedCard.toStringWithPoints(false));
-            System.out.println("    Ваши карты: " + playerHand.toStringFormatted(false));
-            System.out.println("    Карты дилера: " + dealerHand.toStringFormatted(false) + "\n");
-
-            while (dealerHand.getScore() < 17) {
-                waitSeconds(1.5);
-                Card takenCard = deck.takeCard();
-                dealerHand.addCard(takenCard);
-                System.out.println("Дилер открывает карту " + takenCard.toStringWithPoints(false));
-                System.out.println("    Ваши карты: " + playerHand.toStringFormatted(false));
-                System.out.println("    Карты дилера: " + dealerHand.toStringFormatted(false) + "\n");
-            }
-            waitSeconds(1.0);
-
-            int playerScore = playerHand.getScore();
-            int dealerScore = dealerHand.getScore();
-
-            if (dealerHand.isBusted()) {
-                System.out.print("У дилера перебор! Вы выиграли раунд! ");
-                playerWins++;
-            } else if (playerScore > dealerScore) {
-                System.out.print("Вы набрали больше очков! Вы выиграли раунд! ");
-                playerWins++;
-            } else if (dealerScore > playerScore) {
-                System.out.print("Дилер набрал больше очков. Вы проиграли раунд. ");
-                dealerWins++;
+            if (roundState.isPlayerWonByBlackjack()) {
+                System.out.print(scoreState.playerWon("У вас Блэкджек со старта!"));
             } else {
-                System.out.print("Ничья в раунде (Пуш)! Очки равны. ");
+                System.out.println("Ваш ход");
+                System.out.println("-------");
+
+                while (!roundState.isPlayerBusted()) {
+                    System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться... ");
+                    int choice = scanner.nextInt();
+                    if (choice == 0) {
+                        break;
+                    }
+                    if (choice == 1) {
+                        System.out.println(roundState.playerTakeCard());
+                        System.out.println(roundState.getStateInformation());
+                    }
+                }
+
+                if (roundState.isPlayerBusted()) {
+                    System.out.print(scoreState.dealerWon("У вас перебор!"));
+                } else {
+                    System.out.println("\nХод дилера");
+                    System.out.println("-------");
+
+                    waitSeconds(1.0);
+
+                    System.out.println(roundState.dealerOpenSecondCard());
+                    System.out.println(roundState.getStateInformation());
+
+                    while (roundState.isDealerMustToMove()) {
+                        waitSeconds(1.5);
+                        System.out.println(roundState.dealerTakeCard());
+                        System.out.println(roundState.getStateInformation());
+                    }
+
+                    waitSeconds(1.0);
+
+                    if (roundState.isDealerBusted()) {
+                        System.out.print(scoreState.playerWon("У дилера перебор!"));
+                    } else {
+                        int whoWon = roundState.calculateWhoWonByScore();
+                        if (whoWon > 0) {
+                            System.out.print(scoreState.playerWon("Вы набрали больше очков!"));
+                        } else if (whoWon == 0) {
+                            System.out.print(scoreState.drawPush());
+                        } else {
+                            System.out.print(scoreState.dealerWon("Дилер набрал больше очков."));
+                        }
+                    }
+                }
             }
 
-            System.out.println(getScoreNotification(playerWins, dealerWins));
+            System.out.println(scoreState.getScoreNotification());
 
             System.out.println("\nВведите “1”, если хотите сыграть ещё, и “0”, чтобы остановиться... ");
             isPlayerWantToPlay = scanner.nextInt();
@@ -141,29 +99,11 @@ public class Main {
      *
      * @param seconds количество секунд для паузы
      */
-    private static void waitSeconds(double seconds) {
+    public static void waitSeconds(double seconds) {
         try {
             Thread.sleep((long) (seconds * 1000));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        }
-    }
-
-    /**
-     * Формирует текстовое сообщение о текущем счёте игры и лидере.
-     * Возвращает строку в формате, удобном человеку, но ничего не печатает.
-     *
-     * @param playerWins количество побед игрока
-     * @param dealerWins количество побед дилера
-     * @return отформатированная строка со счётом
-     */
-    public static String getScoreNotification(int playerWins, int dealerWins) {
-        if (playerWins > dealerWins) {
-            return "Счет " + playerWins + ":" + dealerWins + " в вашу пользу.";
-        } else if (dealerWins > playerWins) {
-            return "Счет " + playerWins + ":" + dealerWins + " в пользу дилера.";
-        } else {
-            return "Счет " + playerWins + ":" + dealerWins + " (Ничья по раундам).";
         }
     }
 }

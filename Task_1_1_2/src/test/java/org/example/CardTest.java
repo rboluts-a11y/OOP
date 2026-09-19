@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 class CardTest {
     @Test
     void testRegularCard() {
-        Card sevenOfDiamonds = new Card(Card.Suit.DIAMONDS, Card.Rank.SEVEN);
+        Card sevenOfDiamonds = new Card(Suit.DIAMONDS, Rank.SEVEN);
 
-        assertEquals(Card.Suit.DIAMONDS, sevenOfDiamonds.getSuit());
-        assertEquals(Card.Rank.SEVEN, sevenOfDiamonds.getRank());
+        assertEquals(Suit.DIAMONDS, sevenOfDiamonds.getSuit());
+        assertEquals(Rank.SEVEN, sevenOfDiamonds.getRank());
         assertEquals(7, sevenOfDiamonds.getPointsValue());
 
         assertEquals("Бубны", sevenOfDiamonds.getSuit().toString());
@@ -22,7 +22,7 @@ class CardTest {
 
     @Test
     void testAceCard() {
-        Card aceOfClubs = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+        Card aceOfClubs = new Card(Suit.CLUBS, Rank.ACE);
 
         assertEquals(11, aceOfClubs.getPointsValue());
         assertEquals(11, aceOfClubs.getRank().getValue());

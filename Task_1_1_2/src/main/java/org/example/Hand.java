@@ -57,7 +57,7 @@ public class Hand {
 
         for (Card card : cards) {
             totalScore += card.getPointsValue();
-            if (card.getRank() == Card.Rank.ACE) {
+            if (card.getRank() == Rank.ACE) {
                 aceCount++;
             }
         }
@@ -120,7 +120,7 @@ public class Hand {
             if (totalScore <= 21) {
                 break;
             }
-            if (cards.get(i).getRank() == Card.Rank.ACE) {
+            if (cards.get(i).getRank() == Rank.ACE) {
                 cardPoints[i] = 1;
                 totalScore -= 10;
             }
