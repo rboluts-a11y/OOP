@@ -38,7 +38,8 @@ public class Main {
                 System.out.println("-------");
 
                 while (!roundState.isPlayerBusted()) {
-                    System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться... ");
+                    String msg = "Введите “1”, чтобы взять карту, и “0”, чтобы остановиться... ";
+                    System.out.println(msg);
                     int choice = scanner.nextInt();
                     if (choice == 0) {
                         break;

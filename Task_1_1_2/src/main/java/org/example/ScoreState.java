@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Класс, в котором хранится состояние всей игры по раундам: количество игр, побед, поражений
+ */
 public class ScoreState {
     private int playerWins = 0;
     private int dealerWins = 0;
@@ -59,6 +62,4 @@ public class ScoreState {
             return "Счет " + playerWins + ":" + dealerWins + " (Ничья по раундам).";
         }
     }
-
-
 }

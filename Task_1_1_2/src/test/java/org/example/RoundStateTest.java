@@ -22,7 +22,7 @@ public class RoundStateTest {
     }
 
     @Test
-    void testSimulateALotScenarios() {
+    void testSimulateLotScenarios() {
         RoundState roundState = new RoundState();
         for (int numScenario = 1; numScenario <= 100; numScenario++) {
             roundState.newRound();

@@ -1,8 +1,8 @@
 package org.example;
 
 /**
- *Класс, который хранит всю необходимую информацию о текущем раунде.
- *Реализованы необходимые методы для работы с
+ * Класс, который хранит всю необходимую информацию о текущем раунде.
+ * Реализованы необходимые методы для работы с
  */
 public class RoundState {
     private Deck deck;
@@ -11,7 +11,7 @@ public class RoundState {
     private boolean hideSecondCard;
 
     /**
-     *Конструктор класса
+     * Конструктор класса
      */
     public RoundState() {
         deck = new Deck();
@@ -21,7 +21,7 @@ public class RoundState {
     }
 
     /**
-     *
+     * Метод для создания нового раунда
      */
     public void newRound() {
         deck.reset();
@@ -36,57 +36,89 @@ public class RoundState {
     }
 
     /**
+     * Возвращает информацию о состоянии текущего раунда, но не печатает
      *
+     * @return красиво отформатированную строку с информацией о руках игрока и дилера
      */
     public String getStateInformation() {
-        return  "    Ваши карты: " + playerHand.toStringFormatted(false) + "\n" +
-                "    Карты дилера: " + dealerHand.toStringFormatted(hideSecondCard) + "\n";
+        return  "    Ваши карты: " + playerHand.toStringFormatted(false) + "\n"
+                + "    Карты дилера: " + dealerHand.toStringFormatted(hideSecondCard) + "\n";
     }
 
     /**
+     * Метод, определяющий, выиграл ли игрок сразу после раздачи карт (Блэкджек)
      *
+     * @return соответствующее булевое значение
      */
     public boolean isPlayerWonByBlackjack() {
         return playerHand.isBlackjack() && hideSecondCard;
     }
 
     /**
+     * Метод, определяющий, проиграл ли игрок из-за перебора очков
      *
+     * @return соответствующее булевое значение
      */
     public boolean isPlayerBusted() {
         return playerHand.isBusted();
     }
 
     /**
+     * Метод, определяющий, проиграл ли дилер из-за перебора очков
      *
-     * @return
+     * @return соответствующее булевое значение
      */
     public boolean isDealerBusted() {
         return dealerHand.isBusted();
     }
 
+    /**
+     * Метод, который симулирует взятие карты игроком
+     *
+     * @return строка-сообщение о взятой карте без печати
+     */
     public String playerTakeCard() {
         Card takenCard = deck.takeCard();
         playerHand.addCard(takenCard);
         return "Вы открыли карту " + takenCard.toStringWithPoints(false);
     }
 
+    /**
+     * Метод, который симулирует взятие карты дилером
+     *
+     * @return строка-сообщение о взятой карте без печати
+     */
     public String dealerTakeCard() {
         Card takenCard = deck.takeCard();
         dealerHand.addCard(takenCard);
         return "Дилер открывает карту " + takenCard.toStringWithPoints(false);
     }
 
+    /**
+     * Метод, который открывает вторую карту дилера.
+     *
+     * @return строка-сообщение об открытой карте без печати
+     */
     public String dealerOpenSecondCard() {
         hideSecondCard = false;
         Card secondDealerCard = dealerHand.openSecondCard();
         return "Дилер открывает закрытую карту " + secondDealerCard.toStringWithPoints(false);
     }
 
+    /**
+     * Метод, который определяет, должен ли дилер продолжать брать карты
+     *
+     * @return соответствующее булевое значение
+     */
     public boolean isDealerMustToMove() {
         return dealerHand.getScore() < 17;
     }
 
+    /**
+     * Метод, определяющий победителя, если дело дошло до подсчёта очков
+     *
+     * @return целое число: >0, если игрок выиграл, =0, если ничья и <0 если игрок проиграл
+     */
     public int calculateWhoWonByScore() {
         int playerScore = playerHand.getScore();
         int dealerScore = dealerHand.getScore();
