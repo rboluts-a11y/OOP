@@ -106,16 +106,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getScoreNotification(int,int)" class="member-name-link">getScoreNotification</a><wbr>(int&nbsp;playerWins,
- int&nbsp;dealerWins)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#main(java.lang.String%5B%5D)" class="member-name-link">main</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Формирует текстовое сообщение о текущем счёте игры и лидере.</div>
+<div class="block">Точка входа в игру.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#main(java.lang.String%5B%5D)" class="member-name-link">main</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#waitSeconds(double)" class="member-name-link">waitSeconds</a><wbr>(double&nbsp;seconds)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Точка входа в игру.</div>
+<div class="block">Ставит программу на паузу на указанное количество секунд.</div>
 </div>
 </div>
 </div>
@@ -160,18 +159,14 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getScoreNotification(int,int)">
-<h3>getScoreNotification</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getScoreNotification</span><wbr><span class="parameters">(int&nbsp;playerWins,
- int&nbsp;dealerWins)</span></div>
-<div class="block">Формирует текстовое сообщение о текущем счёте игры и лидере.
- Возвращает строку в формате, удобном человеку, но ничего не печатает.</div>
+<section class="detail" id="waitSeconds(double)">
+<h3>waitSeconds</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">waitSeconds</span><wbr><span class="parameters">(double&nbsp;seconds)</span></div>
+<div class="block">Ставит программу на паузу на указанное количество секунд.
+ Обернуто в try-catch для безопасной обработки InterruptedException.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>playerWins</code> - количество побед игрока</dd>
-<dd><code>dealerWins</code> - количество побед дилера</dd>
-<dt>Returns:</dt>
-<dd>отформатированная строка со счётом</dd>
+<dd><code>seconds</code> - количество секунд для паузы</dd>
 </dl>
 </section>
 </li>
