@@ -132,17 +132,23 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Проверяет, набрала ли текущая рука перебор по очкам.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Card.html" title="class in org.example">Card</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openSecondCard()" class="member-name-link">openSecondCard</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isLastAceAndCheap()" class="member-name-link">isLastAceAndCheap</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Определяет, является ли последняя карта в колоде Тузом с одним очком
+ Нужно, чтобы правильно выводить карту, которую только что раздали</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Card.html" title="class in org.example">Card</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openSecondCard()" class="member-name-link">openSecondCard</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает вторую карту в руке для её открытия.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toStringFormatted(boolean)" class="member-name-link">toStringFormatted</a><wbr>(boolean&nbsp;hideSecondCard)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toStringFormatted(boolean)" class="member-name-link">toStringFormatted</a><wbr>(boolean&nbsp;hideSecondCard)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод строит красивое текстовое представление руки строго по ТЗ.</div>
 </div>
 </div>
@@ -249,6 +255,18 @@ loadScripts(document, 'script');</script>
 <dd><code>hideSecondCard</code> - если true, скрывает ВТОРУЮ карту (подставляя заглушку)</dd>
 <dt>Returns:</dt>
 <dd>форматированная строка, например: "[Пиковая дама (10), Тройка Червы (3)] => 13"</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isLastAceAndCheap()">
+<h3>isLastAceAndCheap</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isLastAceAndCheap</span>()</div>
+<div class="block">Определяет, является ли последняя карта в колоде Тузом с одним очком
+ Нужно, чтобы правильно выводить карту, которую только что раздали</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>соответствующее булевое значение</dd>
 </dl>
 </section>
 </li>

@@ -133,28 +133,33 @@ loadScripts(document, 'script');</script>
 <div class="block">Метод, определяющий, проиграл ли дилер из-за перебора очков.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDealerMustToMove()" class="member-name-link">isDealerMustToMove</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDealerHasBlackjack()" class="member-name-link">isDealerHasBlackjack</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, который определяет, должен ли дилер продолжать брать карты.</div>
+<div class="block">Метод, определяющий, имеет ли дилер Блэкджек сразу после раздачи карт.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPlayerBusted()" class="member-name-link">isPlayerBusted</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDealerMustToMove()" class="member-name-link">isDealerMustToMove</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, определяющий, проиграл ли игрок из-за перебора очков.</div>
+<div class="block">Метод, который определяет, должен ли дилер продолжать брать карты.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPlayerWonByBlackjack()" class="member-name-link">isPlayerWonByBlackjack</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPlayerBusted()" class="member-name-link">isPlayerBusted</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, определяющий, выиграл ли игрок сразу после раздачи карт (Блэкджек).</div>
+<div class="block">Метод, определяющий, проиграл ли игрок из-за перебора очков.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#newRound()" class="member-name-link">newRound</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPlayerHasBlackjack()" class="member-name-link">isPlayerHasBlackjack</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Метод, определяющий, имеет ли игрок Блэкджек сразу после раздачи карт.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#newRound()" class="member-name-link">newRound</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод для создания нового раунда.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerTakeCard()" class="member-name-link">playerTakeCard</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerTakeCard()" class="member-name-link">playerTakeCard</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод, который симулирует взятие карты игроком.</div>
 </div>
 </div>
@@ -208,10 +213,21 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="isPlayerWonByBlackjack()">
-<h3>isPlayerWonByBlackjack</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPlayerWonByBlackjack</span>()</div>
-<div class="block">Метод, определяющий, выиграл ли игрок сразу после раздачи карт (Блэкджек).</div>
+<section class="detail" id="isPlayerHasBlackjack()">
+<h3>isPlayerHasBlackjack</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPlayerHasBlackjack</span>()</div>
+<div class="block">Метод, определяющий, имеет ли игрок Блэкджек сразу после раздачи карт.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>соответствующее булевое значение</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isDealerHasBlackjack()">
+<h3>isDealerHasBlackjack</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDealerHasBlackjack</span>()</div>
+<div class="block">Метод, определяющий, имеет ли дилер Блэкджек сразу после раздачи карт.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>соответствующее булевое значение</dd>
