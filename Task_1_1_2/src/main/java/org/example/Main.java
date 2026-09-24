@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 /**
  * Главный класс приложения для выполнения лабораторной работы Task_1_1_2.
  * Содержит реализацию консольного Блэкджека с красивым выводом, удобным для человека.
@@ -13,18 +15,24 @@ public class Main {
      */
     public static void main(String[] args) {
         Game game = new Game();
-        game.hello();
+        System.out.println(game.hello());
         do {
-            game.newRound();
-            if (!game.doIfAnyoneHasBlackjack()) {
+            System.out.print(game.newRound());
+            String cur1 = game.doIfAnyoneHasBlackjack();
+            if (Objects.equals(cur1, "")) {
                 game.processPlayerTakes();
-                if (!game.doIfPlayerIsBusted()) {
-                    game.processDealerTakes();
-                    game.printRoundResult();
+                String cur2 = game.doIfPlayerIsBusted();
+                if (Objects.equals(cur2, "")) {
+                    System.out.print(game.processDealerTakes());
+                    System.out.println(game.getRoundResult());
+                } else {
+                    System.out.println(cur2);
                 }
+            } else {
+                System.out.println(cur1);
             }
-            game.printScore();
+            System.out.println(game.getScore());
         } while (game.isPlayerIfWantToContinue());
-        game.goodbye();
+        System.out.println(game.goodbye());
     }
 }

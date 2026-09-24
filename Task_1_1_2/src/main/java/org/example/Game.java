@@ -23,40 +23,45 @@ public class Game {
 
     /**
      * Метод, который здоровается с пользователем.
+     *
+     * @return возвращает строку приветствия
      */
-    public void hello() {
-        System.out.println("Добро пожаловать в Блэкджек!");
+    public String hello() {
+         return "Добро пожаловать в Блэкджек!";
     }
 
     /**
      * Метод, который начинает новый раунд и раздает карты.
      */
-    public void newRound() {
-        System.out.println(scoreState.addNewGame());
+    public String newRound() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(scoreState.addNewGame()).append("\n");
         roundState.newRound();
-        System.out.println("Дилер раздал карты!\n" + roundState.getStateInformation());
+        sb.append("Дилер раздал карты!\n").append(roundState.getStateInformation()).append("\n");
+        return sb.toString();
     }
 
     /**
      * Проверяет, надо ли закончить игру в самом вначале по причине того что у кого-то Блэкджек.
      * Если да, то вычисляет результат игры и заканчивает игру.
      *
-     * @return булевое значение, означающее, закончилась ли игра
+     * @return пустую строку если игра продолжается и непустую с сообщениями если есть Блэкджек
      */
-    public boolean doIfAnyoneHasBlackjack() {
+    public String doIfAnyoneHasBlackjack() {
+        StringBuilder sb = new StringBuilder();
         boolean hasPlayerBlackjack = roundState.isPlayerHasBlackjack();
         boolean hasDealerBlackjack = roundState.isDealerHasBlackjack();
         if (hasPlayerBlackjack && hasDealerBlackjack) {
-            System.out.println(roundState.dealerOpenSecondCard());
-            System.out.print(scoreState.drawPush("У вас и у дилера Блэкджек со старта! "));
+            sb.append(roundState.dealerOpenSecondCard()).append("\n");
+            sb.append(scoreState.drawPush("У вас и у дилера Блэкджек со старта! "));
         } else if (hasPlayerBlackjack)  {
-            System.out.println(roundState.dealerOpenSecondCard());
-            System.out.print(scoreState.playerWon("У вас Блэкджек со старта!"));
+            sb.append(roundState.dealerOpenSecondCard()).append("\n");
+            sb.append(scoreState.playerWon("У вас Блэкджек со старта!"));
         } else if (hasDealerBlackjack) {
-            System.out.println(roundState.dealerOpenSecondCard());
-            System.out.print(scoreState.dealerWon("У дилера Блэкджек со старта!"));
+            sb.append(roundState.dealerOpenSecondCard()).append("\n");
+            sb.append(scoreState.dealerWon("У дилера Блэкджек со старта!"));
         }
-        return hasPlayerBlackjack || hasDealerBlackjack;
+        return sb.toString();
     }
 
     /**
@@ -83,55 +88,60 @@ public class Game {
     /**
      * Определяет, нужно ли закончить игру в связи с перебором игрока.
      *
-     * @return соответствующее булевое значение.
+     * @return пустую строку если игра продолжается и непустую если перебор
      */
-    public boolean doIfPlayerIsBusted() {
+    public String doIfPlayerIsBusted() {
         if (roundState.isPlayerBusted()) {
-            System.out.print(scoreState.dealerWon("У вас перебор!"));
-            return true;
+            return scoreState.dealerWon("У вас перебор!");
         }
-        return false;
+        return "";
     }
 
     /**
      * Метод, который симулирует процесс взятия дилером карт до остановки.
+     *
+     * @return все текстовые сообщения в одной строке
      */
-    public void processDealerTakes() {
-        System.out.println("\nХод дилера");
-        System.out.println("-------");
-
-        System.out.println(roundState.dealerOpenSecondCard());
-        System.out.println(roundState.getStateInformation());
+    public String processDealerTakes() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nХод дилера\n").append("-------\n");
+        sb.append(roundState.dealerOpenSecondCard()).append("\n");
+        sb.append(roundState.getStateInformation()).append("\n");
 
         while (roundState.isDealerMustToMove()) {
-            System.out.println(roundState.dealerTakeCard());
-            System.out.println(roundState.getStateInformation());
+            sb.append(roundState.dealerTakeCard()).append("\n");
+            sb.append(roundState.getStateInformation()).append("\n");
         }
+        return sb.toString();
     }
 
     /**
      * Метод, который определяет, кто выиграл и печатает соответствующее сообщение.
+     *
+     * @return строка-сообщение с результатом раунда
      */
-    public void printRoundResult() {
+    public String getRoundResult() {
         if (roundState.isDealerBusted()) {
-            System.out.print(scoreState.playerWon("У дилера перебор!"));
+            return scoreState.playerWon("У дилера перебор!");
         } else {
             int whoWon = roundState.calculateWhoWonByScore();
             if (whoWon > 0) {
-                System.out.print(scoreState.playerWon("Вы набрали больше очков!"));
+                return scoreState.playerWon("Вы набрали больше очков!");
             } else if (whoWon == 0) {
-                System.out.print(scoreState.drawPush(""));
+                return scoreState.drawPush("");
             } else {
-                System.out.print(scoreState.dealerWon("Дилер набрал больше очков."));
+                return scoreState.dealerWon("Дилер набрал больше очков.");
             }
         }
     }
 
     /**
      * Метод, который печатает результат.
+     *
+     * @return строка с результатом
      */
-    public void printScore() {
-        System.out.println(scoreState.getScoreNotification());
+    public String getScore() {
+        return scoreState.getScoreNotification();
     }
 
     /**
@@ -148,8 +158,10 @@ public class Game {
 
     /**
      * Метод для прощания с пользователем.
+     *
+     * @return возвращает строку прощания
      */
-    public void goodbye() {
-        System.out.println("Спасибо за игру! Мы будем рады видеть Вас ещё!");
+    public String goodbye() {
+        return "Спасибо за игру! Мы будем рады видеть Вас ещё!";
     }
 }
