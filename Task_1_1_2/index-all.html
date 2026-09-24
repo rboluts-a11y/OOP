@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="org/example/Rank.html#ACE" class="member-name-link">ACE</a> - Enum constant in enum class org.example.<a href="org/example/Rank.html" title="enum class in org.example">Rank</a></dt>
@@ -107,6 +107,14 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/Suit.html#DIAMONDS" class="member-name-link">DIAMONDS</a> - Enum constant in enum class org.example.<a href="org/example/Suit.html" title="enum class in org.example">Suit</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/Game.html#doIfAnyoneHasBlackjack()" class="member-name-link">doIfAnyoneHasBlackjack()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Проверяет, надо ли закончить игру в самом вначале по причине того что у кого-то Блэкджек.</div>
+</dd>
+<dt><a href="org/example/Game.html#doIfPlayerIsBusted()" class="member-name-link">doIfPlayerIsBusted()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Определяет, нужно ли закончить игру в связи с перебором игрока.</div>
+</dd>
 <dt><a href="org/example/ScoreState.html#drawPush(java.lang.String)" class="member-name-link">drawPush(String)</a> - Method in class org.example.<a href="org/example/ScoreState.html" title="class in org.example">ScoreState</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -124,6 +132,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
+<dt><a href="org/example/Game.html" class="type-name-link" title="class in org.example">Game</a> - Class in <a href="org/example/package-summary.html">org.example</a></dt>
+<dd>
+<div class="block">Класс для всей игры, содержит состояние всей игры по раундам и текущий раунд.</div>
+</dd>
+<dt><a href="org/example/Game.html#%3Cinit%3E()" class="member-name-link">Game()</a> - Constructor for class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Конструктор класса.</div>
+</dd>
 <dt><a href="org/example/Card.html#getPointsValue()" class="member-name-link">getPointsValue()</a> - Method in class org.example.<a href="org/example/Card.html" title="class in org.example">Card</a></dt>
 <dd>
 <div class="block">Возвращает базовую стоимость карты в очках на основе её ранга.</div>
@@ -152,6 +168,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Возвращает базовую стоимость ранга карты (для туза это 11).</div>
 </dd>
+<dt><a href="org/example/Game.html#goodbye()" class="member-name-link">goodbye()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод для прощания с пользователем.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
@@ -165,6 +185,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/Suit.html#HEARTS" class="member-name-link">HEARTS</a> - Enum constant in enum class org.example.<a href="org/example/Suit.html" title="enum class in org.example">Suit</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/Game.html#hello()" class="member-name-link">hello()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который здоровается с пользователем.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -201,6 +225,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Метод, определяющий, имеет ли игрок Блэкджек сразу после раздачи карт.</div>
 </dd>
+<dt><a href="org/example/Game.html#isPlayerIfWantToContinue()" class="member-name-link">isPlayerIfWantToContinue()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который определяет у игрока, хочет ли он продолжать игру или нет.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:J">J</h2>
 <dl class="index">
@@ -227,6 +255,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
+<dt><a href="org/example/Game.html#newRound()" class="member-name-link">newRound()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который начинает новый раунд и раздает карты.</div>
+</dd>
 <dt><a href="org/example/RoundState.html#newRound()" class="member-name-link">newRound()</a> - Method in class org.example.<a href="org/example/RoundState.html" title="class in org.example">RoundState</a></dt>
 <dd>
 <div class="block">Метод для создания нового раунда.</div>
@@ -252,6 +284,22 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/ScoreState.html#playerWon(java.lang.String)" class="member-name-link">playerWon(String)</a> - Method in class org.example.<a href="org/example/ScoreState.html" title="class in org.example">ScoreState</a></dt>
 <dd>
 <div class="block">Игрок победил.</div>
+</dd>
+<dt><a href="org/example/Game.html#printRoundResult()" class="member-name-link">printRoundResult()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который определяет, кто выиграл и печатает соответствующее сообщение.</div>
+</dd>
+<dt><a href="org/example/Game.html#printScore()" class="member-name-link">printScore()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который печатает результат.</div>
+</dd>
+<dt><a href="org/example/Game.html#processDealerTakes()" class="member-name-link">processDealerTakes()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который симулирует процесс взятия дилером карт до остановки.</div>
+</dd>
+<dt><a href="org/example/Game.html#processPlayerTakes()" class="member-name-link">processPlayerTakes()</a> - Method in class org.example.<a href="org/example/Game.html" title="class in org.example">Game</a></dt>
+<dd>
+<div class="block">Метод, который симулирует процесс взятия игроком карт до остановки.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:Q">Q</h2>
@@ -349,14 +397,7 @@ the order they are declared.</div>
 the order they are declared.</div>
 </dd>
 </dl>
-<h2 class="title" id="I:W">W</h2>
-<dl class="index">
-<dt><a href="org/example/Main.html#waitSeconds(double)" class="member-name-link">waitSeconds(double)</a> - Static method in class org.example.<a href="org/example/Main.html" title="class in org.example">Main</a></dt>
-<dd>
-<div class="block">Ставит программу на паузу на указанное количество секунд.</div>
-</dd>
-</dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>
