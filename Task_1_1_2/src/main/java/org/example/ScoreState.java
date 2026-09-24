@@ -43,8 +43,8 @@ public class ScoreState {
     /**
      * @return строка с сообщением о ничьей
      */
-    public String drawPush() {
-        return "Ничья в раунде (Пуш)! Очки равны. ";
+    public String drawPush(String reason) {
+        return reason + "Ничья в раунде (Пуш)! Очки равны. ";
     }
 
     /**

@@ -42,8 +42,6 @@ class DeckTest {
             Card card = deck.takeCard();
             assertNotNull(card);
         }
-        assertThrows(IllegalStateException.class, deck::takeCard);
-        deck.reset();
         Card cardAfterReset = deck.takeCard();
         assertNotNull(cardAfterReset);
     }

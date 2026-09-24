@@ -46,12 +46,21 @@ public class RoundState {
     }
 
     /**
-     * Метод, определяющий, выиграл ли игрок сразу после раздачи карт (Блэкджек).
+     * Метод, определяющий, имеет ли игрок Блэкджек сразу после раздачи карт.
      *
      * @return соответствующее булевое значение
      */
-    public boolean isPlayerWonByBlackjack() {
-        return playerHand.isBlackjack() && hideSecondCard;
+    public boolean isPlayerHasBlackjack() {
+        return playerHand.isBlackjack();
+    }
+
+    /**
+     * Метод, определяющий, имеет ли дилер Блэкджек сразу после раздачи карт.
+     *
+     * @return соответствующее булевое значение
+     */
+    public boolean isDealerHasBlackjack() {
+        return dealerHand.isBlackjack();
     }
 
     /**
@@ -80,7 +89,8 @@ public class RoundState {
     public String playerTakeCard() {
         Card takenCard = deck.takeCard();
         playerHand.addCard(takenCard);
-        return "Вы открыли карту " + takenCard.toStringWithPoints(false);
+        boolean isCardIsCheap = playerHand.isLastAceAndCheap();
+        return "Вы открыли карту " + takenCard.toStringWithPoints(isCardIsCheap);
     }
 
     /**
@@ -91,7 +101,8 @@ public class RoundState {
     public String dealerTakeCard() {
         Card takenCard = deck.takeCard();
         dealerHand.addCard(takenCard);
-        return "Дилер открывает карту " + takenCard.toStringWithPoints(false);
+        boolean isCardIsCheap = dealerHand.isLastAceAndCheap();
+        return "Дилер открывает карту " + takenCard.toStringWithPoints(isCardIsCheap);
     }
 
     /**
@@ -102,7 +113,8 @@ public class RoundState {
     public String dealerOpenSecondCard() {
         hideSecondCard = false;
         Card secondDealerCard = dealerHand.openSecondCard();
-        return "Дилер открывает закрытую карту " + secondDealerCard.toStringWithPoints(false);
+        boolean isCardIsCheap = dealerHand.isLastAceAndCheap();
+        return "Дилер открывает закрытую карту " + secondDealerCard.toStringWithPoints(isCardIsCheap);
     }
 
     /**

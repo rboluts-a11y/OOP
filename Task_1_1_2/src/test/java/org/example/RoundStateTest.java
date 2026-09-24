@@ -26,7 +26,7 @@ public class RoundStateTest {
         RoundState roundState = new RoundState();
         for (int numScenario = 1; numScenario <= 100; numScenario++) {
             roundState.newRound();
-            if (!roundState.isPlayerWonByBlackjack()) {
+            if (!roundState.isPlayerHasBlackjack() && !roundState.isDealerHasBlackjack()) {
                 for (int i = 0; i < 2 && !roundState.isPlayerBusted(); i++) {
                     roundState.playerTakeCard();
                 }

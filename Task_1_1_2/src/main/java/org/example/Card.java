@@ -62,5 +62,4 @@ public class Card {
         }
         return rank + " " + suit + " (" + points + ")";
     }
-
 }

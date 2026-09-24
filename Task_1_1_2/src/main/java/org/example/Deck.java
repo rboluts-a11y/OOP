@@ -47,7 +47,8 @@ public class Deck {
      */
     public Card takeCard() {
         if (cards.isEmpty()) {
-            throw new IllegalStateException("В колоде закончились карты!");
+            this.reset();
+            this.shuffle();
         }
         return cards.remove(cards.size() - 1);
     }

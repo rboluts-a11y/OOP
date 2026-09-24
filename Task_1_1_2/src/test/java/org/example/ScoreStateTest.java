@@ -19,7 +19,9 @@ public class ScoreStateTest {
         assertEquals("Дилер набрал больше очков. Вы проиграли раунд. ",
                 scoreState.dealerWon("Дилер набрал больше очков."));
         assertEquals("Ничья в раунде (Пуш)! Очки равны. ",
-                scoreState.drawPush());
+                scoreState.drawPush(""));
+        assertEquals("У вас и у дилера Блэкджек со старта! Ничья в раунде (Пуш)! Очки равны. ",
+                scoreState.drawPush("У вас и у дилера Блэкджек со старта! "));
     }
 
     @Test
@@ -30,7 +32,7 @@ public class ScoreStateTest {
         scoreState.playerWon("");
         assertEquals("Счет 1:0 в вашу пользу.",
                 scoreState.getScoreNotification());
-        scoreState.drawPush();
+        scoreState.drawPush("");
         assertEquals("Счет 1:0 в вашу пользу.",
                 scoreState.getScoreNotification());
         scoreState.dealerWon("");

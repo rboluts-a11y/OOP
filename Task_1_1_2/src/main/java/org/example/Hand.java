@@ -116,7 +116,7 @@ public class Hand {
             totalScore += cardPoints[i];
         }
 
-        for (int i = 0; i < cards.size(); i++) {
+        for (int i = cards.size() - 1; i >= 0; i--) {
             if (totalScore <= 21) {
                 break;
             }
@@ -140,6 +140,35 @@ public class Hand {
         sb.append("] => ").append(totalScore);
 
         return sb.toString();
+    }
+
+    /**
+     * Определяет, является ли последняя карта в колоде Тузом с одним очком
+     * Нужно, чтобы правильно выводить карту, которую только что раздали
+     *
+     * @return соответствующее булевое значение
+     */
+    public boolean isLastAceAndCheap() {
+        int totalScore = 0;
+        int[] cardPoints = new int[cards.size()];
+
+        for (int i = 0; i < cards.size(); i++) {
+            Card card = cards.get(i);
+            cardPoints[i] = card.getPointsValue();
+            totalScore += cardPoints[i];
+        }
+
+        for (int i = cards.size() - 1; i >= 0; i--) {
+            if (totalScore <= 21) {
+                break;
+            }
+            if (cards.get(i).getRank() == Rank.ACE) {
+                cardPoints[i] = 1;
+                totalScore -= 10;
+            }
+        }
+
+        return cardPoints[cards.size() - 1] == 1;
     }
 
     @Override

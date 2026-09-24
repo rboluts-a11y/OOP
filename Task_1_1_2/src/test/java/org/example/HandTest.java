@@ -119,4 +119,17 @@ class HandTest {
         hand.addCard(new Card(Suit.DIAMONDS, Rank.SEVEN));
         assertEquals(hand.toStringFormatted(false), hand.toString());
     }
+
+    @Test
+    void testLastIsAceAndCheap() {
+        Hand hand = new Hand();
+        hand.addCard(new Card(Suit.SPADES, Rank.ACE));
+        assertFalse(hand.isLastAceAndCheap());
+        hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+        assertTrue(hand.isLastAceAndCheap());
+        hand.addCard(new Card(Suit.CLUBS, Rank.EIGHT));
+        assertFalse(hand.isLastAceAndCheap());
+        hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
+        assertTrue(hand.isLastAceAndCheap());
+    }
 }

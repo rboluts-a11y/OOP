@@ -31,8 +31,17 @@ public class Main {
 
             System.out.println("Дилер раздал карты!\n" + roundState.getStateInformation());
 
-            if (roundState.isPlayerWonByBlackjack()) {
+            boolean hasPlayerBlackjack = roundState.isPlayerHasBlackjack();
+            boolean hasDealerBlackjack = roundState.isDealerHasBlackjack();
+            if (hasPlayerBlackjack && hasDealerBlackjack) {
+                System.out.println(roundState.dealerOpenSecondCard());
+                System.out.print(scoreState.drawPush("У вас и у дилера Блэкджек со старта! "));
+            } else if (hasPlayerBlackjack)  {
+                System.out.println(roundState.dealerOpenSecondCard());
                 System.out.print(scoreState.playerWon("У вас Блэкджек со старта!"));
+            } else if (hasDealerBlackjack) {
+                System.out.println(roundState.dealerOpenSecondCard());
+                System.out.print(scoreState.dealerWon("У дилера Блэкджек со старта!"));
             } else {
                 System.out.println("Ваш ход");
                 System.out.println("-------");
@@ -76,7 +85,7 @@ public class Main {
                         if (whoWon > 0) {
                             System.out.print(scoreState.playerWon("Вы набрали больше очков!"));
                         } else if (whoWon == 0) {
-                            System.out.print(scoreState.drawPush());
+                            System.out.print(scoreState.drawPush(""));
                         } else {
                             System.out.print(scoreState.dealerWon("Дилер набрал больше очков."));
                         }
