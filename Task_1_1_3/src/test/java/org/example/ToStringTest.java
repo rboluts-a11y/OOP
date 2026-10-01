@@ -1,18 +1,18 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class ToStringTest {
     @Test
     void allTypesInOneExpressionTest() {
         Expression e = new Add(
-                new Sub (
+                new Sub(
                         new Variable("x"),
                         new Number(67)
                 ),
-                new Mul (
+                new Mul(
                         new Variable("yz"),
                         new Div(
                                 new Number(52),

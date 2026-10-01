@@ -31,7 +31,7 @@ public class Mul extends Expression {
     }
 
     /**
-     * Метод, который возвращает результат посимвольного дифференцирования для произведения
+     * Метод, который возвращает результат посимвольного дифференцирования для произведения.
      *
      * @param variable переменная, по которой ведётся дифференцирование
      * @return соответствующее математическое выражение
@@ -50,7 +50,7 @@ public class Mul extends Expression {
      * @return числовое значение вычисленного выражения
      */
     int evalByMap(Map<String, Integer> specifiedVariables) {
-        return leftSide.evalByMap(specifiedVariables) *
-                rightSide.evalByMap(specifiedVariables);
+        return leftSide.evalByMap(specifiedVariables)
+                * rightSide.evalByMap(specifiedVariables);
     }
 }

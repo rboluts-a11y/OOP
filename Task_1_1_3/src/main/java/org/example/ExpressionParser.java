@@ -1,9 +1,9 @@
 package org.example;
 
 /**
- * Класс для парсера выражения по строковому представлению для построения Expression
+ * Класс для парсера выражения по строковому представлению для построения Expression.
  */
-public class ExpressionParser{
+public class ExpressionParser {
     private static boolean isSymbolBinaryOperation(char symbol) {
         return symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/';
     }
@@ -16,7 +16,8 @@ public class ExpressionParser{
             return true;
         }
         char previous = str.charAt(index - 1);
-        return previous == '(' || previous == '+' || previous == '-' || previous == '*' || previous == '/';
+        return previous == '(' || previous == '+' || previous == '-'
+                || previous == '*' || previous == '/';
     }
 
     /**
@@ -33,7 +34,8 @@ public class ExpressionParser{
             int depth = 1;
             while (true) {
                 char currentLetter = stringFormat.charAt(currentIndex);
-                if (depth == 1 && isSymbolBinaryOperation(currentLetter) && !isUnaryMinus(stringFormat, currentIndex)) {
+                if (depth == 1 && isSymbolBinaryOperation(currentLetter)
+                        && !isUnaryMinus(stringFormat, currentIndex)) {
                     break;
                 }
                 if (currentLetter == '(') {
@@ -45,7 +47,9 @@ public class ExpressionParser{
                 currentIndex++;
             }
             Expression leftSide = parse(stringFormat.substring(1, currentIndex));
-            Expression rightSide = parse(stringFormat.substring(currentIndex + 1, stringLength - 1));
+            Expression rightSide = parse(
+                    stringFormat.substring(currentIndex + 1, stringLength - 1)
+            );
             char binaryOperation = stringFormat.charAt(currentIndex);
             switch (binaryOperation) {
                 case '+':

@@ -31,7 +31,7 @@ public class Add extends Expression {
     }
 
     /**
-     * Метод, который возвращает результат посимвольного дифференцирования для суммы
+     * Метод, который возвращает результат посимвольного дифференцирования для суммы.
      *
      * @param variable переменная, по которой ведётся дифференцирование
      * @return соответствующее математическое выражение
@@ -48,7 +48,7 @@ public class Add extends Expression {
      * @return числовое значение вычисленного выражения
      */
     int evalByMap(Map<String, Integer> specifiedVariables) {
-        return leftSide.evalByMap(specifiedVariables) +
-                rightSide.evalByMap(specifiedVariables);
+        return leftSide.evalByMap(specifiedVariables)
+                + rightSide.evalByMap(specifiedVariables);
     }
 }
