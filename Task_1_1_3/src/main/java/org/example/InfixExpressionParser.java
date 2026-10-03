@@ -131,9 +131,9 @@ public class InfixExpressionParser {
      * @return объект класса Expression, построенное по строковому представлению выражения.
      */
     public static Expression parse(String expression) {
-        List <Token> allTokens = tokenize(expression);
-        List <Token> postfixTokens = toPostfix(allTokens);
-        Stack <Expression> allExpressions = new Stack <>();
+        List<Token> allTokens = tokenize(expression);
+        List<Token> postfixTokens = toPostfix(allTokens);
+        Stack<Expression> allExpressions = new Stack<>();
         for (Token currentToken : postfixTokens) {
             TokenType type = currentToken.getTokenType();
             switch (type) {
