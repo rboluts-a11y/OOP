@@ -53,4 +53,29 @@ public class Mul extends Expression {
         return leftSide.evalByMap(specifiedVariables)
                 * rightSide.evalByMap(specifiedVariables);
     }
+
+    /**
+     * Метод, который упрощает выражение, представляющее собой произведение двух выражений.
+     * Этот метод не изменяет исходное выражение, а только создаёт новое.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public Expression simplify() {
+        Expression expLeftSide = leftSide.simplify();
+        Expression expRightSide = rightSide.simplify();
+        if (expLeftSide instanceof Number && expRightSide instanceof Number) {
+            return new Number(((Number) expLeftSide).numberValue
+                    * ((Number) expRightSide).numberValue);
+        } else if (expLeftSide instanceof Number && ((Number) expLeftSide).numberValue == 0) {
+            return new Number(0);
+        } else if (expRightSide instanceof Number && ((Number) expRightSide).numberValue == 0) {
+            return new Number(0);
+        } else if (expLeftSide instanceof Number && ((Number) expLeftSide).numberValue == 1) {
+            return expRightSide;
+        } else if (expRightSide instanceof Number && ((Number) expRightSide).numberValue == 1) {
+            return expLeftSide;
+        } else {
+            return new Mul(expLeftSide, expRightSide);
+        }
+    }
 }

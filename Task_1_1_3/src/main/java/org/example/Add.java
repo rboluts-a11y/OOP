@@ -51,4 +51,21 @@ public class Add extends Expression {
         return leftSide.evalByMap(specifiedVariables)
                 + rightSide.evalByMap(specifiedVariables);
     }
+
+    /**
+     * Метод, который упрощает выражение, представляющее собой сумму двух выражений.
+     * Этот метод не изменяет исходное выражение, а только создаёт новое.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public Expression simplify() {
+        Expression expLeftSide = leftSide.simplify();
+        Expression expRightSide = rightSide.simplify();
+        if (expLeftSide instanceof Number && expRightSide instanceof Number) {
+            return new Number(((Number) expLeftSide).numberValue
+                    + ((Number) expRightSide).numberValue);
+        } else {
+            return new Add(expLeftSide, expRightSide);
+        }
+    }
 }

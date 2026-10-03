@@ -27,7 +27,7 @@ abstract public class Expression {
      * @param variable переменная, по которой ведётся дифференцирование
      * @return соответствующее математическое выражение
      */
-    abstract Expression derivative(String variable);
+    public abstract Expression derivative(String variable);
 
     /**
      * Метод, который вычисляет значение математического выражения при означивании переменных.
@@ -49,4 +49,12 @@ abstract public class Expression {
         Map<String, Integer> specifiedVariables = StringParser.parse(stringVariables);
         return evalByMap(specifiedVariables);
     }
+
+    /**
+     * Метод, который упрощает исходное выражение по правилам.
+     * Этот метод не изменяет исходное выражение, а только создаёт новое.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public abstract Expression simplify();
 }

@@ -48,4 +48,14 @@ public class Number extends Expression {
     int evalByMap(Map<String, Integer> specifiedVariables) {
         return numberValue;
     }
+
+    /**
+     * Метод, который упрощает выражение, представляющее собой число
+     * Для числа ничего упростить нельзя, поэтому упрощенное выражение - это сам объект.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public Expression simplify() {
+       return this;
+    }
 }

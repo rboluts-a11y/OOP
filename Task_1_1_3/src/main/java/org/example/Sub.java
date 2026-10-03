@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Класс, который представляет собой разность двух выражений.
@@ -50,5 +51,24 @@ public class Sub extends Expression {
     int evalByMap(Map<String, Integer> specifiedVariables) {
         return leftSide.evalByMap(specifiedVariables)
                 - rightSide.evalByMap(specifiedVariables);
+    }
+
+    /**
+     * Метод, который упрощает выражение, представляющее собой разность двух выражений.
+     * Этот метод не изменяет исходное выражение, а только создаёт новое.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public Expression simplify() {
+        Expression expLeftSide = leftSide.simplify();
+        Expression expRightSide = rightSide.simplify();
+        if (expLeftSide instanceof Number && expRightSide instanceof Number) {
+            return new Number(((Number) expLeftSide).numberValue
+                    - ((Number) expRightSide).numberValue);
+        } else if (Objects.equals(expLeftSide.toString(), expRightSide.toString())) {
+            return new Number(0);
+        } else {
+            return new Sub(expLeftSide, expRightSide);
+        }
     }
 }

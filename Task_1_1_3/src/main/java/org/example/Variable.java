@@ -53,4 +53,14 @@ public class Variable extends Expression {
     int evalByMap(Map<String, Integer> specifiedVariables) {
         return specifiedVariables.get(variable);
     }
+
+    /**
+     * Метод, который упрощает выражение, представляющее собой переменную
+     * Для переменной ничего упростить нельзя, поэтому упрощенное выражение - это сам объект.
+     *
+     * @return новое, упрощенное выражение
+     */
+    public Expression simplify() {
+        return this;
+    }
 }
