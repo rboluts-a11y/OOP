@@ -30,7 +30,8 @@ public class InfixExpressionParser {
             }
             if (Character.isDigit(current)) {
                 int start = index;
-                while (index < expression.length() && Character.isDigit(expression.charAt(index))){
+                while (index < expression.length()
+                        && Character.isDigit(expression.charAt(index))) {
                     index++;
                 }
                 String value = expression.substring(start, index);
@@ -39,7 +40,8 @@ public class InfixExpressionParser {
             }
             if (Character.isLetter(current)) {
                 int start = index;
-                while (index < expression.length() && Character.isLetter(expression.charAt(index))){
+                while (index < expression.length()
+                        && Character.isLetter(expression.charAt(index))) {
                     index++;
                 }
                 String value = expression.substring(start, index);
@@ -131,7 +133,7 @@ public class InfixExpressionParser {
     public static Expression parse(String expression) {
         List <Token> allTokens = tokenize(expression);
         List <Token> postfixTokens = toPostfix(allTokens);
-        Stack <Expression> allExpressions = new Stack<>();
+        Stack <Expression> allExpressions = new Stack <>();
         for (Token currentToken : postfixTokens) {
             TokenType type = currentToken.getTokenType();
             switch (type) {
