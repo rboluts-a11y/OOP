@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="package-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -62,7 +66,8 @@ loadScripts(document, 'script');</script>
 <ul class="summary-list">
 <li>
 <div id="class-summary">
-<div class="caption"><span>Classes</span></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button><button id="class-summary-tab3" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab3', 2)" class="table-tab">Enum Classes</button></div>
+<div id="class-summary.tabpanel" role="tabpanel" aria-labelledby="class-summary-tab0">
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
@@ -82,27 +87,40 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Класс для парсера выражения по строковому представлению для построения Expression.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Main.html" title="class in org.example">Main</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">&nbsp;</div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Mul.html" title="class in org.example">Mul</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="InfixExpressionParser.html" title="class in org.example">InfixExpressionParser</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="block">Класс для парсера выражения по строковому представлению для построения Expression.</div>
+</div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Main.html" title="class in org.example">Main</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">&nbsp;</div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Mul.html" title="class in org.example">Mul</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Класс, который представляет собой произведение двух выражений.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Number.html" title="class in org.example">Number</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Number.html" title="class in org.example">Number</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Класс, который представляет собой выражение, являющееся числом.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="StringParser.html" title="class in org.example">StringParser</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="StringParser.html" title="class in org.example">StringParser</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Класс для парсера строки с означенными переменными для построения словаря.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Sub.html" title="class in org.example">Sub</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Sub.html" title="class in org.example">Sub</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Класс, который представляет собой разность двух выражений.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Variable.html" title="class in org.example">Variable</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Token.html" title="class in org.example">Token</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="block">Класс для токена - синтаксической единицы для лексера.</div>
+</div>
+<div class="col-first odd-row-color class-summary class-summary-tab3"><a href="TokenType.html" title="enum class in org.example">TokenType</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab3">
+<div class="block">Класс enum, представляющий собой перечисление всех возможных видов токенов.</div>
+</div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Variable.html" title="class in org.example">Variable</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Класс, который представляет собой выражение, являющееся переменной.</div>
+</div>
 </div>
 </div>
 </div>
