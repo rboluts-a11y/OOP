@@ -65,7 +65,7 @@ public class Sub extends Expression {
         if (expLeftSide instanceof Number && expRightSide instanceof Number) {
             return new Number(((Number) expLeftSide).numberValue
                     - ((Number) expRightSide).numberValue);
-        } else if (Objects.equals(expLeftSide.toString(), expRightSide.toString())) {
+        } else if (expLeftSide.equals(expRightSide)) {
             return new Number(0);
         } else {
             return new Sub(expLeftSide, expRightSide);

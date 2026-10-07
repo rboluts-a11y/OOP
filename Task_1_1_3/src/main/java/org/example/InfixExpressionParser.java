@@ -9,6 +9,10 @@ import java.util.Stack;
  * Отличие от ExpressionParser в том, что он не требует скобки вокруг каждого выражения.
  */
 public class InfixExpressionParser {
+    /**
+     * Пустой дефолтный конструктор класса.
+     */
+    private InfixExpressionParser() {}
     private static boolean isUnaryMinus(List<Token> tokens) {
         if (tokens.isEmpty()) {
             return true;
@@ -16,7 +20,7 @@ public class InfixExpressionParser {
 
         TokenType previousType = tokens.get(tokens.size() - 1).getTokenType();
 
-        return previousType == TokenType.UNARY_MINUS || previousType == TokenType.LEFT_PAREN;
+        return previousType != TokenType.NUMBER && previousType != TokenType.VARIABLE;
     }
 
     private static List<Token> tokenize(String expression) {

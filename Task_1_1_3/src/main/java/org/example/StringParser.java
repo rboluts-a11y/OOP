@@ -16,6 +16,9 @@ public class StringParser {
     public static Map<String, Integer> parse(String stringVariables) {
         Map<String, Integer> allVariables = new HashMap<>();
         stringVariables = stringVariables.replace(" ", "");
+        if (stringVariables.isEmpty()) {
+            return allVariables;
+        }
         String[] variables = stringVariables.split(";");
         for (String oneVariable : variables) {
             String[] variableAndValue = oneVariable.split("=");

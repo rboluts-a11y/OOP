@@ -4,6 +4,10 @@ package org.example;
  * Класс для парсера выражения по строковому представлению для построения Expression.
  */
 public class ExpressionParser {
+    /**
+     * Пустой дефолтный конструктор класса.
+     */
+    private ExpressionParser() {}
     private static boolean isSymbolBinaryOperation(char symbol) {
         return symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/';
     }

@@ -28,6 +28,12 @@ class InfixExpressionParserTest {
         Expression multiplyFromNeg = InfixExpressionParser.parse("-5 * 2");
         assertEquals("(-5*2)", multiplyFromNeg.toString());
 
+        Expression multiplyToNeg = InfixExpressionParser.parse("5*-1");
+        assertEquals("(5*-1)", multiplyToNeg.toString());
+
+        Expression unaryMinusAfterBinary = InfixExpressionParser.parse("2--1");
+        assertEquals("(2--1)", unaryMinusAfterBinary.toString());
+
         Expression negExpression = InfixExpressionParser.parse("-(5 * 2)");
         assertEquals("(0-(5*2))", negExpression.toString());
 

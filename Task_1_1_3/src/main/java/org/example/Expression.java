@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Класс, который представляет собой математическое выражение.
@@ -13,6 +14,24 @@ abstract public class Expression {
      */
     @Override
     public abstract String toString();
+
+    /**
+     * Метод, который определяет, соответствуют ли объекты одному математическому выражению.
+     *
+     * @param o объект, с которым проводим сравнение
+     * @return булевое значение, означающее, соответствует ли объект o этому же выражению
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        Expression e = (Expression) o;
+        return Objects.equals(this.toString(), e.toString());
+    }
 
     /**
      * Метод, который печатает в стандартный поток вывода выражение, полученное через toString().
