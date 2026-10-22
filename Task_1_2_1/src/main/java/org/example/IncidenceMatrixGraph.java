@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Класс, который реализует операции над графом, представленным в виде матрицы инцидентности.
+ *
+ * @param <T> тип вершин
+ */
 public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
     private enum Incidence {
         OUTGOING(-1),
@@ -19,7 +24,14 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
     }
 
     private final List<T> vertices;
+
     private final List<List<Incidence>> incidenceMatrix;
+
+    /**
+     * Конструктор, который создает пустой граф.
+     *
+     * @param vertexType тип вершин
+     */
     public IncidenceMatrixGraph(Class<T> vertexType) {
         super(vertexType);
         vertices = new ArrayList<>();
@@ -37,6 +49,12 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         return incidenceMatrix.get(0).size();
     }
 
+    /**
+     * Добавляет вершину в граф.
+     *
+     * @param v вершина, которую собираемся добавить
+     * @throws IllegalArgumentException если вершина уже есть в графе
+     */
     @Override
     public void addVertex(T v) throws IllegalArgumentException {
         if (this.indexOf(v) != -1) {
@@ -50,6 +68,12 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         }
     }
 
+    /**
+     * Удаляет вершину из графа вместе со всеми смежными с ней ребрами.
+     *
+     * @param v вершина, которую собираемся удалить
+     * @throws NoSuchElementException если вершины нет в графе
+     */
     @Override
     public void removeVertex(T v) throws NoSuchElementException {
         int indexVertex = this.indexOf(v);
@@ -92,6 +116,14 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         return indexEdge;
     }
 
+    /**
+     * Добавляет ориентированное ребро в граф.
+     *
+     * @param from вершина, из которой идет ребро
+     * @param to вершина, в которую ведет ребро
+     * @throws NoSuchElementException если какой-то из двух вершин нет в графе
+     * @throws IllegalArgumentException если данное ребро уже существует в графе
+     */
     @Override
     public void addEdge(T from, T to) throws NoSuchElementException, IllegalArgumentException {
         int indexFrom = this.indexOf(from);
@@ -115,6 +147,13 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         }
     }
 
+    /**
+     * Удаляет ориентированное ребро из графа.
+     *
+     * @param from вершина, из которой идет ребро
+     * @param to вершина, в которую ведет ребро
+     * @throws NoSuchElementException если какой-то из двух вершин или ребра между ними нет в графе
+     */
     @Override
     public void removeEdge(T from, T to) throws NoSuchElementException {
         int indexFrom = this.indexOf(from);
@@ -131,6 +170,13 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         }
     }
 
+    /**
+     * Метод, который возвращает список всех вершин, таких что есть прямое ребро из данной вершины.
+     *
+     * @param v вершина, для которой собираемся найти всех ее "соседей"
+     * @return список (List) всех "соседей"
+     * @throws NoSuchElementException если вершины нет в графе
+     */
     @Override
     public List<T> getOutgoingVertices(T v) throws NoSuchElementException {
         int indexVertex = this.indexOf(v);
@@ -154,6 +200,11 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         return adjacentVertices;
     }
 
+    /**
+     * Метод, который возвращает список всех вершин графа.
+     *
+     * @return список (List) всех вершин графа.
+     */
     @Override
     public List<T> getVertices() {
         return new ArrayList<>(vertices);

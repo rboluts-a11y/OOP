@@ -7,11 +7,34 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Function;
 
+/**
+ * Класс для чтения графа из файла фиксированного формата.
+ * Формат: количество вершин, затем сами вершины, затем количество ребер,
+ * затем для каждого ребра вершина откуда идет ребро и вершина куда идет ребро.
+ * Например:
+ * 3
+ * A B C
+ * 3
+ * A B
+ * A C
+ * B C
+ */
 public class GraphReader {
 
     private GraphReader() {
     }
 
+    /**
+     * Метод, который считывает граф с файла.
+     *
+     * @param path путь до файла
+     * @param vertexType тип вершин (например, String.class)
+     * @param parser функция, преобразующая строку в вершину (например, Integer::parseInt)
+     * @param graphFactory функция, создающая граф нужной реализации (н/р, AdjacencyListGraph::new)
+     * @return полученный граф
+     * @param <T> тип вершин
+     * @throws IOException если произошла ошибка ввода-вывода при чтении файла
+     */
     public static <T> Graph<T> read(
             Path path,
             Class<T> vertexType,
@@ -29,7 +52,17 @@ public class GraphReader {
         }
     }
 
-    static <T> Graph<T> read(
+    /**
+     * Метод, который считывает граф с помощью инициализированного сканера.
+     *
+     * @param scanner инициализированный сканер
+     * @param vertexType тип вершин (например, String.class)
+     * @param parser функция, преобразующая строку в вершину (например, Integer::parseInt)
+     * @param graphFactory функция, создающая граф нужной реализации (н/р, AdjacencyListGraph::new)
+     * @return полученный граф
+     * @param <T> тип вершин
+     */
+    public static <T> Graph<T> read(
             Scanner scanner,
             Class<T> vertexType,
             Function<String, T> parser,

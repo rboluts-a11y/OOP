@@ -1,17 +1,62 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * Главный класс Main, который нужен для взаимодействия с пользователем.
+ * Спрашивает у пользователя вершины и ребра, желаемую реализацию.
+ * Программа выводит toString() графа.
+ * Также если граф содержит цикл, выводится что есть цикл, иначе две топологические сортировки.
+ */
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.setOut(new java.io.PrintStream(System.out, true,
+                java.nio.charset.StandardCharsets.UTF_8));
+        Scanner scanner = new Scanner(System.in, java.nio.charset.StandardCharsets.UTF_8);
+        System.out.println("Добро пожаловать в строитель графов!");
+        System.out.println("Выберите, какую реализацию графа Вы хотите использовать:");
+        System.out.println("Введите цифру от 1 до 3:");
+        System.out.println("1) Список смежности");
+        System.out.println("2) Матрица смежности");
+        System.out.println("3) Матрица инцидентности");
+        Graph<String> graph;
+        int variant = scanner.nextInt();
+        if (variant == 1) {
+            graph = new AdjacencyListGraph<>(String.class);
+        } else if (variant == 2) {
+            graph = new AdjacencyMatrixGraph<>(String.class);
+        } else {
+            graph = new IncidenceMatrixGraph<>(String.class);
+        }
+        System.out.println("\nВведите количество вершин в графе:");
+        int vertexCount = scanner.nextInt();
+        System.out.println("Введите строковые значения всех вершин:");
+        for (int i = 0; i < vertexCount; i++) {
+            String vertex = scanner.next();
+            graph.addVertex(vertex);
+        }
+        System.out.println("\nВведите количество ребер в графе:");
+        int edgeCount = scanner.nextInt();
+        System.out.println("Для каждого ребра введите две вершины, "
+                + "между которыми провести ребро (вначале откуда, затем куда):");
+        for (int i = 0; i < edgeCount; i++) {
+            String vertexFrom = scanner.next();
+            String vertexTo = scanner.next();
+            graph.addEdge(vertexFrom, vertexTo);
+        }
+        System.out.println("Строковое представление графа: " + graph);
+        try {
+            List<String> DfsResult = DfsTopoSort.topoSort(graph);
+            List<String> KahnResult = KahnTopoSort.topoSort(graph);
+            System.out.print("Результат топологической сортировки алгоритмом DFS: ");
+            System.out.println(DfsResult);
+            System.out.print("Результат топологической сортировки алгоритмом Кана: ");
+            System.out.println(KahnResult);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        } catch (IllegalStateException e) {
+            System.out.println("К сожалению, вершины графа невозможно топологически отсортировать"
+                   + ", из-за того, что в графе есть цикл.");
         }
     }
 }

@@ -1,7 +1,17 @@
 package org.example;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Класс, который предоставляет реализацию топологической сортировки графа с использованием dfs.
+ * Используются 3 цвета вершин: WHITE, GRAY, BLACK.
+ * Если граф имеет цикл, выбрасывается исключение IllegalStateException.
+ */
 public class DfsTopoSort {
     private DfsTopoSort() {
     }
@@ -19,7 +29,8 @@ public class DfsTopoSort {
     }
 
     private static <T> void dfs(Graph<T> graph, T curVertex,
-                                Map<T, Color> vertexColors, List<T> orderVertices) {
+                                Map<T, Color> vertexColors, List<T> orderVertices
+    ) throws IllegalStateException {
         vertexColors.put(curVertex, Color.GRAY);
         List<T> adjacentVertices = graph.getOutgoingVertices(curVertex);
         for (T adjacentVertex : adjacentVertices) {
@@ -33,7 +44,15 @@ public class DfsTopoSort {
         orderVertices.add(curVertex);
     }
 
-    public static <T> List<T> topoSort(Graph<T> graph) {
+    /**
+     * Метод, который реализовывает топологическую сортировку вершин графа с использованием dfs.
+     *
+     * @param graph исходный граф
+     * @return список вершин топологической сортировки
+     * @param <T> тип вершин
+     * @throws IllegalStateException если в графе есть цикл
+     */
+    public static <T> List<T> topoSort(Graph<T> graph) throws IllegalStateException {
         Objects.requireNonNull(graph);
         Map<T, Color> vertexColors = new HashMap<>();
         List<T> allVertices = graph.getVertices();

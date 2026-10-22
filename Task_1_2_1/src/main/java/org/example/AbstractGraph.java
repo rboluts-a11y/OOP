@@ -1,13 +1,30 @@
 package org.example;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * Абстрактный класс, представляющий граф.
+ * Содержит в себе тип вершины (например, Integer, String) как поле.
+ * Переопределены общие методы, независимые от реализации (equals, toString, hashCode).
+ *
+ * @param <T> тип вершины в графе
+ */
 public abstract class AbstractGraph<T> implements Graph<T> {
     private final Class<T> vertexType;
-    protected AbstractGraph(Class<T> vertexType) {
+
+    /**
+     * Конструктор класса, сохраняет тип вершин графа.
+     *
+     * @param vertexType тип вершины (например, Integer.class)
+     */
+    public AbstractGraph(Class<T> vertexType) {
         this.vertexType = vertexType;
     }
+
     private record Edge<T>(T from, T to) {}
+
     private static <T> Set<Edge<T>> getEdges(Graph<T> graph) {
         Set<Edge<T>> edges = new HashSet<>();
         for (T from : graph.getVertices()) {
@@ -18,6 +35,17 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         }
         return edges;
     }
+
+    /**
+     * Метод, определяющий, равен ли объект данному графу.
+     * Графы одинаковые, если для них соблюдается:
+     * 1) у них одинаковый тип вершин.
+     * 2) у них одинаковое множество вершин.
+     * 3) у них одинаковое множество ребер.
+     *
+     * @param o объект, с которым ведется сравнение
+     * @return соответствующее булевое значение
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,6 +64,13 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         }
         return getEdges(this).equals(getEdges(other));
     }
+
+    /**
+     * Метод, который возвращает строковое представление графа.
+     * Выводит как списки смежности, например: "A -> (B, C); B -> (C); C -> ()"
+     *
+     * @return строковое представление графа
+     */
     @Override
     public String toString() {
         List<T> allVertices = this.getVertices();
@@ -57,6 +92,13 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         }
         return sb.toString();
     }
+
+    /**
+     * Метод, вычисляющий хэш-код данного графа.
+     * Использует тип вершин, множество вершин и множество ребер для хэширования.
+     *
+     * @return хэш-код графа
+     */
     @Override
     public int hashCode() {
         int result = vertexType.hashCode();
