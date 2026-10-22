@@ -1,8 +1,8 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class GraphImplementationsTest {
 
@@ -26,7 +26,7 @@ class GraphImplementationsTest {
     }
 
     @Test
-    void SingleVertexGraphsAreEqual() {
+    void singleVertexGraphsAreEqual() {
         Graph<String> adjacencyList = new AdjacencyListGraph<>(String.class);
         Graph<String> adjacencyMatrix = new AdjacencyMatrixGraph<>(String.class);
         Graph<String> incidenceMatrix = new IncidenceMatrixGraph<>(String.class);
@@ -44,7 +44,7 @@ class GraphImplementationsTest {
     }
 
     @Test
-    void SingleVertexGraphsWithLoopAreEqual() {
+    void singleVertexGraphsWithLoopAreEqual() {
         Graph<String> adjacencyList = new AdjacencyListGraph<>(String.class);
         Graph<String> adjacencyMatrix = new AdjacencyMatrixGraph<>(String.class);
         Graph<String> incidenceMatrix = new IncidenceMatrixGraph<>(String.class);
@@ -66,21 +66,21 @@ class GraphImplementationsTest {
     }
 
     @Test
-    void TwoVertexGraphsWithOneEdgeAreEqual() {
+    void twoVertexGraphsWithOneEdgeAreEqual() {
         Graph<String> adjacencyList = new AdjacencyListGraph<>(String.class);
         Graph<String> adjacencyMatrix = new AdjacencyMatrixGraph<>(String.class);
         Graph<String> incidenceMatrix = new IncidenceMatrixGraph<>(String.class);
 
         adjacencyList.addVertex("A");
-        adjacencyList.addVertex("B");
-        adjacencyList.addEdge("A", "B");
-
         adjacencyMatrix.addVertex("A");
-        adjacencyMatrix.addVertex("B");
-        adjacencyMatrix.addEdge("A", "B");
-
         incidenceMatrix.addVertex("A");
+
+        adjacencyList.addVertex("B");
+        adjacencyMatrix.addVertex("B");
         incidenceMatrix.addVertex("B");
+
+        adjacencyList.addEdge("A", "B");
+        adjacencyMatrix.addEdge("A", "B");
         incidenceMatrix.addEdge("A", "B");
 
         assertEquals(adjacencyList, adjacencyMatrix);
@@ -92,24 +92,25 @@ class GraphImplementationsTest {
     }
 
     @Test
-    void TwoVertexGraphsWithEdgesInBothDirectionsAreEqual() {
+    void twoVertexGraphsWithEdgesInBothDirectionsAreEqual() {
         Graph<String> adjacencyList = new AdjacencyListGraph<>(String.class);
         Graph<String> adjacencyMatrix = new AdjacencyMatrixGraph<>(String.class);
         Graph<String> incidenceMatrix = new IncidenceMatrixGraph<>(String.class);
 
         adjacencyList.addVertex("A");
-        adjacencyList.addVertex("B");
-        adjacencyList.addEdge("A", "B");
-        adjacencyList.addEdge("B", "A");
-
         adjacencyMatrix.addVertex("A");
-        adjacencyMatrix.addVertex("B");
-        adjacencyMatrix.addEdge("A", "B");
-        adjacencyMatrix.addEdge("B", "A");
-
         incidenceMatrix.addVertex("A");
+
+        adjacencyList.addVertex("B");
+        adjacencyMatrix.addVertex("B");
         incidenceMatrix.addVertex("B");
+
+        adjacencyList.addEdge("A", "B");
+        adjacencyMatrix.addEdge("A", "B");
         incidenceMatrix.addEdge("A", "B");
+
+        adjacencyList.addEdge("B", "A");
+        adjacencyMatrix.addEdge("B", "A");
         incidenceMatrix.addEdge("B", "A");
 
         assertEquals(adjacencyList, adjacencyMatrix);
@@ -121,7 +122,7 @@ class GraphImplementationsTest {
     }
 
     @Test
-    void TriangleGraphsAreEqual() {
+    void triangleGraphsAreEqual() {
         Graph<String> adjacencyList = new AdjacencyListGraph<>(String.class);
         Graph<String> adjacencyMatrix = new AdjacencyMatrixGraph<>(String.class);
         Graph<String> incidenceMatrix = new IncidenceMatrixGraph<>(String.class);

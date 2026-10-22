@@ -91,21 +91,21 @@ class GraphReaderTest {
 
     @Test
     void readsGraphWithTriangleUsingAllImplementations() {
-        Graph<String> adjacencyList = read(
+        final Graph<String> adjacencyList = read(
                 TRIANGLE_GRAPH,
                 String.class,
                 s -> s,
                 AdjacencyListGraph::new
         );
 
-        Graph<String> adjacencyMatrix = read(
+        final Graph<String> adjacencyMatrix = read(
                 TRIANGLE_GRAPH,
                 String.class,
                 s -> s,
                 AdjacencyMatrixGraph::new
         );
 
-        Graph<String> incidenceMatrix = read(
+        final Graph<String> incidenceMatrix = read(
                 TRIANGLE_GRAPH,
                 String.class,
                 s -> s,
@@ -127,7 +127,7 @@ class GraphReaderTest {
 
     @Test
     void readsTwoWayGraph() {
-        Graph<String> graph = read(
+        final Graph<String> graph = read(
                 TWO_WAY,
                 String.class,
                 s -> s,
@@ -169,7 +169,7 @@ class GraphReaderTest {
                 20 30
                 """;
 
-        Graph<Integer> graph = read(
+        final Graph<Integer> graph = read(
                 content,
                 Integer.class,
                 Integer::parseInt,

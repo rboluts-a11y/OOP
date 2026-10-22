@@ -80,7 +80,7 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         if (indexVertex == -1) {
             throw new NoSuchElementException();
         }
-        List <Integer> indicesEdgesSaved = new ArrayList<>();
+        List<Integer> indicesEdgesSaved = new ArrayList<>();
         int allEdgesCount = this.getEdgesCount();
         for (int j = 0; j < allEdgesCount; j++) {
             if (incidenceMatrix.get(indexVertex).get(j) == Incidence.NONE) {
@@ -90,7 +90,7 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         vertices.remove(indexVertex);
         incidenceMatrix.remove(indexVertex);
         for (int i = 0; i < incidenceMatrix.size(); i++) {
-            List <Incidence> valuesSaved = new ArrayList<>();
+            List<Incidence> valuesSaved = new ArrayList<>();
             for (Integer indexEdge : indicesEdgesSaved) {
                 valuesSaved.add(incidenceMatrix.get(i).get(indexEdge));
             }
@@ -183,7 +183,7 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         if (indexVertex == -1) {
             throw new NoSuchElementException();
         }
-        List <T> adjacentVertices = new ArrayList<>();
+        List<T> adjacentVertices = new ArrayList<>();
         int vertexCount = incidenceMatrix.size();
         int edgeCount = this.getEdgesCount();
         for (int j = 0; j < edgeCount; j++) {

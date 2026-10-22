@@ -47,12 +47,12 @@ public class Main {
         }
         System.out.println("Строковое представление графа: " + graph);
         try {
-            List<String> DfsResult = DfsTopoSort.topoSort(graph);
-            List<String> KahnResult = KahnTopoSort.topoSort(graph);
+            List<String> dfsResult = DfsTopoSort.topoSort(graph);
+            List<String> kahnResult = KahnTopoSort.topoSort(graph);
             System.out.print("Результат топологической сортировки алгоритмом DFS: ");
-            System.out.println(DfsResult);
+            System.out.println(dfsResult);
             System.out.print("Результат топологической сортировки алгоритмом Кана: ");
-            System.out.println(KahnResult);
+            System.out.println(kahnResult);
 
         } catch (IllegalStateException e) {
             System.out.println("К сожалению, вершины графа невозможно топологически отсортировать"

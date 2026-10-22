@@ -49,7 +49,7 @@ public class AdjacencyListGraph<T> extends AbstractGraph<T>  {
         if (!adjacencyList.containsKey(v)) {
             throw new NoSuchElementException();
         }
-        for (T from: adjacencyList.keySet()) {
+        for (T from : adjacencyList.keySet()) {
             adjacencyList.get(from).remove(v);
         }
         adjacencyList.remove(v);

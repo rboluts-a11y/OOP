@@ -3,9 +3,9 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Класс, который предоставляет реализацию топологической сортировки графа с использованием dfs.
@@ -48,8 +48,8 @@ public class DfsTopoSort {
      * Метод, который реализовывает топологическую сортировку вершин графа с использованием dfs.
      *
      * @param graph исходный граф
-     * @return список вершин топологической сортировки
      * @param <T> тип вершин
+     * @return список вершин топологической сортировки
      * @throws IllegalStateException если в графе есть цикл
      */
     public static <T> List<T> topoSort(Graph<T> graph) throws IllegalStateException {

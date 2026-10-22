@@ -31,8 +31,8 @@ public class GraphReader {
      * @param vertexType тип вершин (например, String.class)
      * @param parser функция, преобразующая строку в вершину (например, Integer::parseInt)
      * @param graphFactory функция, создающая граф нужной реализации (н/р, AdjacencyListGraph::new)
-     * @return полученный граф
      * @param <T> тип вершин
+     * @return полученный граф
      * @throws IOException если произошла ошибка ввода-вывода при чтении файла
      */
     public static <T> Graph<T> read(
@@ -59,8 +59,8 @@ public class GraphReader {
      * @param vertexType тип вершин (например, String.class)
      * @param parser функция, преобразующая строку в вершину (например, Integer::parseInt)
      * @param graphFactory функция, создающая граф нужной реализации (н/р, AdjacencyListGraph::new)
-     * @return полученный граф
      * @param <T> тип вершин
+     * @return полученный граф
      */
     public static <T> Graph<T> read(
             Scanner scanner,

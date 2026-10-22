@@ -125,7 +125,7 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
             throw new NoSuchElementException();
         }
         int vertexCount = vertices.size();
-        List <T> listAdjacent = new ArrayList<>();
+        List<T> listAdjacent = new ArrayList<>();
         for (int j = 0; j < vertexCount; j++) {
             if (adjacencyMatrix.get(indexVertex).get(j)) {
                 listAdjacent.add(vertices.get(j));

@@ -18,6 +18,14 @@ public class KahnTopoSort {
     private KahnTopoSort() {
     }
 
+    /**
+     * Метод, который реализовывает топологическую сортировку вершин графа алгоритмом Кана.
+     *
+     * @param graph исходный граф
+     * @param <T> тип вершин
+     * @return список вершин топологической сортировки
+     * @throws IllegalStateException если в графе есть цикл
+     */
     public static <T> List<T> topoSort(Graph<T> graph) {
         Objects.requireNonNull(graph);
         List<T> vertices = graph.getVertices();
@@ -26,7 +34,7 @@ public class KahnTopoSort {
             degreeIn.put(vertex, 0);
         }
         for (T vertex : vertices) {
-            for (T adjacentVertex: graph.getOutgoingVertices(vertex)) {
+            for (T adjacentVertex : graph.getOutgoingVertices(vertex)) {
                 int oldValue = degreeIn.get(adjacentVertex);
                 int newValue = oldValue + 1;
                 degreeIn.put(adjacentVertex, newValue);
@@ -35,7 +43,7 @@ public class KahnTopoSort {
 
         List<T> zeroInDegree = new ArrayList<>();
         List<T> orderVertices = new ArrayList<>();
-        for (T vertex: vertices) {
+        for (T vertex : vertices) {
             if (degreeIn.get(vertex) == 0) {
                 zeroInDegree.add(vertex);
             }
@@ -45,7 +53,7 @@ public class KahnTopoSort {
             T curVertex = zeroInDegree.get(zeroDegreeCount - 1);
             orderVertices.add(curVertex);
             zeroInDegree.remove(zeroDegreeCount - 1);
-            for (T adjacentVertex: graph.getOutgoingVertices(curVertex)) {
+            for (T adjacentVertex : graph.getOutgoingVertices(curVertex)) {
                 int oldValue = degreeIn.get(adjacentVertex);
                 int newValue = oldValue - 1;
                 degreeIn.put(adjacentVertex, newValue);
