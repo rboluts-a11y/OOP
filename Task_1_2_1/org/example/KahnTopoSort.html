@@ -98,7 +98,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#topoSort(org.example.Graph)" class="member-name-link">topoSort</a><wbr>(<a href="Graph.html" title="interface in org.example">Graph</a>&lt;T&gt;&nbsp;graph)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Метод, который реализовывает топологическую сортировку вершин графа алгоритмом Кана.</div>
+</div>
 </div>
 </div>
 </div>
@@ -120,6 +122,17 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="topoSort(org.example.Graph)">
 <h3>topoSort</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;</span>&nbsp;<span class="element-name">topoSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in org.example">Graph</a>&lt;T&gt;&nbsp;graph)</span></div>
+<div class="block">Метод, который реализовывает топологическую сортировку вершин графа алгоритмом Кана.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - тип вершин</dd>
+<dt>Parameters:</dt>
+<dd><code>graph</code> - исходный граф</dd>
+<dt>Returns:</dt>
+<dd>список вершин топологической сортировки</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - если в графе есть цикл</dd>
+</dl>
 </section>
 </li>
 </ul>
