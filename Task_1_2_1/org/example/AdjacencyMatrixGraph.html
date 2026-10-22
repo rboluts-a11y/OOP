@@ -127,26 +127,47 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Добавляет вершину в граф.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOutgoingVertices(T)" class="member-name-link">getOutgoingVertices</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#edgeCount()" class="member-name-link">edgeCount</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, который возвращает список всех вершин, таких что есть прямое ребро из данной вершины.</div>
+<div class="block">Возвращает количество ребер в графе.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOutgoingVertices(T)" class="member-name-link">getOutgoingVertices</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Метод, который возвращает список всех вершин, таких что есть прямое ребро из данной вершины.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод, который возвращает список всех вершин графа.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(T,T)" class="member-name-link">removeEdge</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;from,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasEdge(T,T)" class="member-name-link">hasEdge</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;from,
  <a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;to)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, есть ли такое ребро в графе.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasVertex(T)" class="member-name-link">hasVertex</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Удаляет ориентированное ребро из графа.</div>
+<div class="block">Проверяет, есть ли такая вершина в графе.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(T)" class="member-name-link">removeVertex</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(T,T)" class="member-name-link">removeEdge</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;from,
+ <a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;to)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Удаляет ориентированное ребро из графа.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(T)" class="member-name-link">removeVertex</a><wbr>(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Удаляет вершину из графа вместе со всеми смежными с ней ребрами.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#vertexCount()" class="member-name-link">vertexCount</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество вершин в графе.</div>
 </div>
 </div>
 </div>
@@ -187,6 +208,59 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="hasVertex(T)">
+<h3 id="hasVertex(java.lang.Object)">hasVertex</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasVertex</span><wbr><span class="parameters">(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;v)</span></div>
+<div class="block">Проверяет, есть ли такая вершина в графе.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>v</code> - проверяемая вершина</dd>
+<dt>Returns:</dt>
+<dd>соответствующее булевое значение</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasEdge(T,T)">
+<h3 id="hasEdge(java.lang.Object,java.lang.Object)">hasEdge</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEdge</span><wbr><span class="parameters">(<a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;from,
+ <a href="AdjacencyMatrixGraph.html" title="type parameter in AdjacencyMatrixGraph">T</a>&nbsp;to)</span>
+                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></span></div>
+<div class="block">Проверяет, есть ли такое ребро в графе.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>from</code> - вершина, откуда должно исходить ребро</dd>
+<dd><code>to</code> - вершина, куда должно входить ребро</dd>
+<dt>Returns:</dt>
+<dd>соответствующее булевое значение</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></code> - если какой-либо из двух вершин нет в графе</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="vertexCount()">
+<h3>vertexCount</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">vertexCount</span>()</div>
+<div class="block">Возвращает количество вершин в графе.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество вершин</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="edgeCount()">
+<h3>edgeCount</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">edgeCount</span>()</div>
+<div class="block">Возвращает количество ребер в графе.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>количество ребер</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="addVertex(T)">
 <h3 id="addVertex(java.lang.Object)">addVertex</h3>
