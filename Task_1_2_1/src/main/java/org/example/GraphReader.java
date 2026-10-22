@@ -98,7 +98,9 @@ public class GraphReader {
         }
 
         if (scanner.hasNext()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "Лишние данные в конце входного файла: " + scanner.next()
+            );
         }
 
         return graph;
@@ -111,11 +113,15 @@ public class GraphReader {
         try {
             count = Integer.parseInt(token);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "Количество вершин или рёбер должно быть целым числом: " + token + " !", e
+            );
         }
 
         if (count < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "Количество вершин или рёбер не может быть отрицательным: " + count + " !"
+            );
         }
 
         return count;
@@ -123,7 +129,9 @@ public class GraphReader {
 
     private static String readToken(Scanner scanner) {
         if (!scanner.hasNext()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "Неожиданный конец входных данных: ожидался следующий элемент графа!"
+            );
         }
 
         return scanner.next();
@@ -136,7 +144,10 @@ public class GraphReader {
         try {
             return Objects.requireNonNull(parser.apply(token));
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                    "Не удалось преобразовать значение в вершину графа: " + token + " !",
+                    e
+            );
         }
     }
 }

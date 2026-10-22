@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 /**
@@ -29,6 +30,67 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
     }
 
     /**
+     * Проверяет, есть ли такая вершина в графе.
+     *
+     * @param v проверяемая вершина
+     * @return соответствующее булевое значение
+     */
+    @Override
+    public boolean hasVertex(T v) {
+        return vertices.contains(v);
+    }
+
+    /**
+     * Проверяет, есть ли такое ребро в графе.
+     *
+     * @param from вершина, откуда должно исходить ребро
+     * @param to   вершина, куда должно входить ребро
+     * @return соответствующее булевое значение
+     * @throws NoSuchElementException если какой-либо из двух вершин нет в графе
+     */
+    @Override
+    public boolean hasEdge(T from, T to) throws NoSuchElementException {
+        if (!this.hasVertex(from)) {
+            throw new NoSuchElementException("Вершины " + from + " в графе нет!");
+        }
+        if (!this.hasVertex(to)) {
+            throw new NoSuchElementException("Вершины " + to + " в графе нет!");
+        }
+        int indexFrom = this.indexOf(from);
+        int indexTo = this.indexOf(to);
+        return adjacencyMatrix.get(indexFrom).get(indexTo);
+    }
+
+    /**
+     * Возвращает количество вершин в графе.
+     *
+     * @return количество вершин
+     */
+    @Override
+    public int vertexCount() {
+        return vertices.size();
+    }
+
+    /**
+     * Возвращает количество ребер в графе.
+     *
+     * @return количество ребер
+     */
+    @Override
+    public int edgeCount() {
+        int vertexCount = this.vertexCount();
+        int edgeCountCur = 0;
+        for (int i = 0; i < vertexCount; i++) {
+            for (int j = 0; j < vertexCount; j++) {
+                if (adjacencyMatrix.get(i).get(j)) {
+                    edgeCountCur++;
+                }
+            }
+        }
+        return edgeCountCur;
+    }
+
+    /**
      * Добавляет вершину в граф.
      *
      * @param v вершина, которую собираемся добавить
@@ -36,8 +98,8 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void addVertex(T v) throws IllegalArgumentException {
-        if (this.indexOf(v) != -1) {
-            throw new IllegalArgumentException();
+        if (this.hasVertex(v)) {
+            throw new IllegalArgumentException("Вершина " + v + " уже существует в графе!");
         }
         vertices.add(v);
         adjacencyMatrix.add(new ArrayList<>());
@@ -58,10 +120,10 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void removeVertex(T v) throws NoSuchElementException {
-        int indexVertex = this.indexOf(v);
-        if (indexVertex == -1) {
-            throw new NoSuchElementException();
+        if (!this.hasVertex(v)) {
+            throw new NoSuchElementException("Вершины " + v + " в графе нет!");
         }
+        int indexVertex = this.indexOf(v);
         vertices.remove(indexVertex);
         adjacencyMatrix.remove(indexVertex);
         int vertexCount = vertices.size();
@@ -80,14 +142,13 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void addEdge(T from, T to) throws NoSuchElementException, IllegalArgumentException {
+        if (this.hasEdge(from, to)) {
+            throw new IllegalArgumentException(
+                    "В графе уже присутствует ребро " + from + " -> " + to + " !"
+            );
+        }
         int indexFrom = this.indexOf(from);
         int indexTo = this.indexOf(to);
-        if (indexFrom == -1 || indexTo == -1) {
-            throw new NoSuchElementException();
-        }
-        if (adjacencyMatrix.get(indexFrom).get(indexTo)) {
-            throw new IllegalArgumentException();
-        }
         adjacencyMatrix.get(indexFrom).set(indexTo, true);
     }
 
@@ -100,14 +161,13 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void removeEdge(T from, T to) throws NoSuchElementException {
+        if (!this.hasEdge(from, to)) {
+            throw new NoSuchElementException(
+                    "Ребра " + from + " -> " + to + " в графе нет!"
+            );
+        }
         int indexFrom = this.indexOf(from);
         int indexTo = this.indexOf(to);
-        if (indexFrom == -1 || indexTo == -1) {
-            throw new NoSuchElementException();
-        }
-        if (!adjacencyMatrix.get(indexFrom).get(indexTo)) {
-            throw new NoSuchElementException();
-        }
         adjacencyMatrix.get(indexFrom).set(indexTo, false);
     }
 
@@ -120,11 +180,11 @@ public class AdjacencyMatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public List<T> getOutgoingVertices(T v) throws NoSuchElementException {
-        int indexVertex = this.indexOf(v);
-        if (indexVertex == -1) {
-            throw new NoSuchElementException();
+        if (!this.hasVertex(v)) {
+            throw new NoSuchElementException("Вершины " + v + " в графе нет!");
         }
-        int vertexCount = vertices.size();
+        int indexVertex = this.indexOf(v);
+        int vertexCount = this.vertexCount();
         List<T> listAdjacent = new ArrayList<>();
         for (int j = 0; j < vertexCount; j++) {
             if (adjacencyMatrix.get(indexVertex).get(j)) {

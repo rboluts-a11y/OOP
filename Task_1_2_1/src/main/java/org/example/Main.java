@@ -26,8 +26,10 @@ public class Main {
             graph = new AdjacencyListGraph<>(String.class);
         } else if (variant == 2) {
             graph = new AdjacencyMatrixGraph<>(String.class);
-        } else {
+        } else if (variant == 3) {
             graph = new IncidenceMatrixGraph<>(String.class);
+        } else {
+            throw new IllegalArgumentException("Реализация графа должна быть выбрана от 1 до 3");
         }
         System.out.println("\nВведите количество вершин в графе:");
         int vertexCount = scanner.nextInt();

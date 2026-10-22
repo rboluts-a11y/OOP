@@ -11,16 +11,10 @@ import java.util.NoSuchElementException;
  */
 public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
     private enum Incidence {
-        OUTGOING(-1),
-        NONE(0),
-        INCOMING(1),
-        LOOP(2);
-
-        private final int value;
-
-        Incidence(int value) {
-            this.value = value;
-        }
+        OUTGOING,
+        NONE,
+        INCOMING,
+        LOOP;
     }
 
     private final List<T> vertices;
@@ -42,7 +36,68 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
         return vertices.indexOf(v);
     }
 
-    private int getEdgesCount() {
+    /**
+     * Проверяет, есть ли такая вершина в графе.
+     *
+     * @param v проверяемая вершина
+     * @return соответствующее булевое значение
+     */
+    @Override
+    public boolean hasVertex(T v) {
+        return vertices.contains(v);
+    }
+
+    /**
+     * Проверяет, есть ли такое ребро в графе.
+     *
+     * @param from вершина, откуда должно исходить ребро
+     * @param to   вершина, куда должно входить ребро
+     * @return соответствующее булевое значение
+     * @throws NoSuchElementException если какой-либо из двух вершин нет в графе
+     */
+    @Override
+    public boolean hasEdge(T from, T to) throws NoSuchElementException {
+        if (!this.hasVertex(from)) {
+            throw new NoSuchElementException("Вершины " + from + " в графе нет!");
+        }
+        if (!this.hasVertex(to)) {
+            throw new NoSuchElementException("Вершины " + to + " в графе нет!");
+        }
+        int edgeCount = this.edgeCount();
+        int indexFrom = this.indexOf(from);
+        int indexTo = this.indexOf(to);
+        for (int j = 0; j < edgeCount; j++) {
+            if (from == to) {
+                if (incidenceMatrix.get(indexFrom).get(j) == Incidence.LOOP) {
+                    return true;
+                }
+            } else {
+                if (incidenceMatrix.get(indexFrom).get(j) == Incidence.OUTGOING
+                        && incidenceMatrix.get(indexTo).get(j) == Incidence.INCOMING) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Возвращает количество вершин в графе.
+     *
+     * @return количество вершин
+     */
+    @Override
+    public int vertexCount() {
+        return vertices.size();
+    }
+
+    /**
+     * Возвращает количество ребер в графе.
+     *
+     * @return количество ребер
+     */
+    @Override
+    public int edgeCount() {
         if (incidenceMatrix.isEmpty()) {
             return 0;
         }
@@ -57,12 +112,12 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
      */
     @Override
     public void addVertex(T v) throws IllegalArgumentException {
-        if (this.indexOf(v) != -1) {
-            throw new IllegalArgumentException();
+        if (this.hasVertex(v)) {
+            throw new IllegalArgumentException("Вершина " + v + " уже существует в графе!");
         }
         vertices.add(v);
         incidenceMatrix.add(new ArrayList<>());
-        int edgesCount = this.getEdgesCount();
+        int edgesCount = this.edgeCount();
         for (int j = 0; j < edgesCount; j++) {
             incidenceMatrix.get(incidenceMatrix.size() - 1).add(Incidence.NONE);
         }
@@ -76,12 +131,12 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
      */
     @Override
     public void removeVertex(T v) throws NoSuchElementException {
-        int indexVertex = this.indexOf(v);
-        if (indexVertex == -1) {
-            throw new NoSuchElementException();
+        if (!this.hasVertex(v)) {
+            throw new NoSuchElementException("Вершины " + v + " в графе нет!");
         }
+        int indexVertex = this.indexOf(v);
         List<Integer> indicesEdgesSaved = new ArrayList<>();
-        int allEdgesCount = this.getEdgesCount();
+        int allEdgesCount = this.edgeCount();
         for (int j = 0; j < allEdgesCount; j++) {
             if (incidenceMatrix.get(indexVertex).get(j) == Incidence.NONE) {
                 indicesEdgesSaved.add(j);
@@ -100,7 +155,7 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
 
     private int findEdge(int from, int to) {
         int indexEdge = -1;
-        int edgeCount = this.getEdgesCount();
+        int edgeCount = this.edgeCount();
         for (int j = 0; j < edgeCount; j++) {
             if (from == to) {
                 if (incidenceMatrix.get(from).get(j) == Incidence.LOOP) {
@@ -126,16 +181,14 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
      */
     @Override
     public void addEdge(T from, T to) throws NoSuchElementException, IllegalArgumentException {
+        if (this.hasEdge(from, to)) {
+            throw new IllegalArgumentException(
+                    "В графе уже присутствует ребро " + from + " -> " + to + " !"
+            );
+        }
         int indexFrom = this.indexOf(from);
         int indexTo = this.indexOf(to);
-        if (indexFrom == -1 || indexTo == -1) {
-            throw new NoSuchElementException();
-        }
-        int indexEdge = this.findEdge(indexFrom, indexTo);
-        if (indexEdge != -1) {
-            throw new IllegalArgumentException();
-        }
-        int edgeCount = this.getEdgesCount();
+        int edgeCount = this.edgeCount();
         for (int i = 0; i < vertices.size(); i++) {
             incidenceMatrix.get(i).add(Incidence.NONE);
         }
@@ -156,15 +209,14 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
      */
     @Override
     public void removeEdge(T from, T to) throws NoSuchElementException {
+        if (!this.hasEdge(from, to)) {
+            throw new NoSuchElementException(
+                    "Ребра " + from + " -> " + to + " в графе нет!"
+            );
+        }
         int indexFrom = this.indexOf(from);
         int indexTo = this.indexOf(to);
-        if (indexFrom == -1 || indexTo == -1) {
-            throw new NoSuchElementException();
-        }
         int indexEdge = this.findEdge(indexFrom, indexTo);
-        if (indexEdge == -1) {
-            throw new NoSuchElementException();
-        }
         for (int i = 0; i < vertices.size(); i++) {
             incidenceMatrix.get(i).remove(indexEdge);
         }
@@ -179,13 +231,13 @@ public class IncidenceMatrixGraph<T> extends AbstractGraph<T>  {
      */
     @Override
     public List<T> getOutgoingVertices(T v) throws NoSuchElementException {
-        int indexVertex = this.indexOf(v);
-        if (indexVertex == -1) {
-            throw new NoSuchElementException();
+        if (!this.hasVertex(v)) {
+            throw new NoSuchElementException("Вершины " + v + " в графе нет!");
         }
+        int indexVertex = this.indexOf(v);
         List<T> adjacentVertices = new ArrayList<>();
         int vertexCount = incidenceMatrix.size();
-        int edgeCount = this.getEdgesCount();
+        int edgeCount = this.edgeCount();
         for (int j = 0; j < edgeCount; j++) {
             if (incidenceMatrix.get(indexVertex).get(j) == Incidence.LOOP) {
                 adjacentVertices.add(v);

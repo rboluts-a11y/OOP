@@ -35,7 +35,7 @@ public class DfsTopoSort {
         List<T> adjacentVertices = graph.getOutgoingVertices(curVertex);
         for (T adjacentVertex : adjacentVertices) {
             if (vertexColors.get(adjacentVertex) == Color.GRAY) {
-                throw new IllegalStateException();
+                throw new IllegalStateException("В графе есть цикл!");
             } else if (vertexColors.get(adjacentVertex) == Color.WHITE) {
                 dfs(graph, adjacentVertex, vertexColors, orderVertices);
             }

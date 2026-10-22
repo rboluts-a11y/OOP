@@ -1,6 +1,7 @@
 package org.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,9 +16,15 @@ public abstract class AbstractGraphTest {
     @Test
     void addVertexAddsNewVertex() {
         Graph<Integer> graph = createGraph(Integer.class);
-
+        assertEquals(0, graph.vertexCount());
+        assertEquals(0, graph.edgeCount());
+        assertFalse(graph.hasVertex(1));
         graph.addVertex(1);
-
+        assertTrue(graph.hasVertex(1));
+        assertFalse(graph.hasVertex(2));
+        assertFalse(graph.hasEdge(1, 1));
+        assertEquals(1, graph.vertexCount());
+        assertEquals(0, graph.edgeCount());
         assertEquals(List.of(1), graph.getVertices());
         assertEquals(List.of(), graph.getOutgoingVertices(1));
     }
@@ -37,9 +44,11 @@ public abstract class AbstractGraphTest {
     void removeVertexRemovesExistingVertex() {
         Graph<Integer> graph = createGraph(Integer.class);
         graph.addVertex(1);
+        assertTrue(graph.hasVertex(1));
         graph.addVertex(2);
 
         graph.removeVertex(1);
+        assertFalse(graph.hasVertex(1));
 
         assertEquals(List.of(2), graph.getVertices());
     }
@@ -54,11 +63,17 @@ public abstract class AbstractGraphTest {
         graph.addEdge(2, 1);
         graph.addEdge(3, 1);
         graph.addEdge(2, 3);
-
+        assertEquals(4, graph.edgeCount());
         graph.removeVertex(1);
-
         assertEquals(List.of(3), graph.getOutgoingVertices(2));
         assertEquals(List.of(), graph.getOutgoingVertices(3));
+        assertEquals(1, graph.edgeCount());
+        assertThrows(NoSuchElementException.class,
+                () -> graph.hasEdge(1, 2));
+        assertThrows(NoSuchElementException.class,
+                () -> graph.hasEdge(2, 1));
+        assertFalse(graph.hasEdge(3, 2));
+        assertTrue(graph.hasEdge(2, 3));
     }
 
     @Test
@@ -82,6 +97,7 @@ public abstract class AbstractGraphTest {
 
         assertEquals(List.of(2), graph.getOutgoingVertices(1));
         assertEquals(List.of(), graph.getOutgoingVertices(2));
+        assertEquals(1, graph.edgeCount());
     }
 
     @Test
@@ -95,14 +111,16 @@ public abstract class AbstractGraphTest {
 
         assertEquals(List.of(2), graph.getOutgoingVertices(1));
         assertEquals(List.of(1), graph.getOutgoingVertices(2));
+        assertEquals(2, graph.edgeCount());
     }
 
     @Test
     void addEdgeAllowsSelfLoop() {
         Graph<Integer> graph = createGraph(Integer.class);
         graph.addVertex(1);
-
+        assertFalse(graph.hasEdge(1, 1));
         graph.addEdge(1, 1);
+        assertTrue(graph.hasEdge(1, 1));
 
         assertEquals(List.of(1), graph.getOutgoingVertices(1));
     }
@@ -204,6 +222,7 @@ public abstract class AbstractGraphTest {
         graph.addVertex(1);
         graph.addVertex(2);
 
+        assertFalse(graph.hasEdge(1, 2));
         assertThrows(NoSuchElementException.class,
                 () -> graph.removeEdge(1, 2));
     }
@@ -376,8 +395,6 @@ public abstract class AbstractGraphTest {
 
         assertNotEquals("not a graph", graph);
     }
-
-    // ---------- hashCode ----------
 
     @Test
     void equalGraphsHaveEqualHashCodes() {

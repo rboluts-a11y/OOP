@@ -64,7 +64,7 @@ public class KahnTopoSort {
 
         }
         if (orderVertices.size() != vertices.size()) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("В графе есть цикл!");
         } else {
             return orderVertices;
         }

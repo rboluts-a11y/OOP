@@ -11,6 +11,38 @@ import java.util.NoSuchElementException;
  */
 public interface Graph<T> {
     /**
+     * Проверяет, есть ли такая вершина в графе.
+     *
+     * @param v проверяемая вершина
+     * @return соответствующее булевое значение
+     */
+    boolean hasVertex(T v);
+
+    /**
+     * Проверяет, есть ли такое ребро в графе.
+     *
+     * @param from вершина, откуда должно исходить ребро
+     * @param to вершина, куда должно входить ребро
+     * @return соответствующее булевое значение
+     * @throws NoSuchElementException если какой-либо из двух вершин нет в графе
+     */
+    boolean hasEdge(T from, T to) throws NoSuchElementException;
+
+    /**
+     * Возвращает количество вершин в графе.
+     *
+     * @return количество вершин
+     */
+    int vertexCount();
+
+    /**
+     * Возвращает количество ребер в графе.
+     *
+     * @return количество ребер
+     */
+    int edgeCount();
+
+    /**
      * Добавляет вершину в граф.
      *
      * @param v вершина, которую собираемся добавить
