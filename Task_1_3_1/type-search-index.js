@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"org.example.source","l":"CodePointSource","k":"10"},{"p":"org.example.source","l":"FileCodePointSource"},{"p":"org.example","l":"KMPSearch"},{"p":"org.example","l":"Main"},{"p":"org.example.source","l":"StringCodePointSource"}];updateSearchResults();
