@@ -29,7 +29,6 @@ class KMPSearchTest {
     @Test
     void returnsEmptyListWhenPatternIsLonger() throws IOException {
         List<Long> allIndices = KMPSearch.findFromString("abcabc", "abcd");
-
         assertEquals(List.of(), allIndices);
     }
 
