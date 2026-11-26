@@ -5,21 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class StudentRecordPossibilitiesTest {
-    private final double EPS = 0.001;
+    private static final double EPS = 0.001;
 
-    private static final int[] DIFFERENTIATED_CREDITS_PER_SEMESTER =
-            {3, 3, 6, 5, 4, 6, 4, 4};
+    private static final int[] DIFFERENTIATED_CREDITS_PER_SEMESTER = {
+            3, 3, 6, 5, 4, 6, 4, 4
+    };
 
-    private static final int[] EXAMS_PER_SEMESTER =
-            {3, 3, 2, 5, 3, 2, 1, 0};
+    private static final int[] EXAMS_PER_SEMESTER = {
+            3, 3, 2, 5, 3, 2, 1, 0
+    };
 
-    private static final int[] CREDITS_PER_SEMESTER =
-            {3, 2, 0, 0, 0, 0, 1, 1};
+    private static final int[] CREDITS_PER_SEMESTER = {
+            3, 2, 0, 0, 0, 0, 1, 1
+    };
 
     private Grade[] grades(int count, Grade grade) {
         Grade[] result = new Grade[count];
